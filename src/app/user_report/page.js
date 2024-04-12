@@ -2,7 +2,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import { Player, Controls } from '@lottiefiles/react-lottie-player';
-import Circularbar from "@/app/components/Circularbar";
+import Circularbar from "../components/Circularbar";
 import Image from 'next/image'
 import ScoreSummary from '../components/ScoreSummary';
 

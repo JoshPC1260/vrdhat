@@ -11,7 +11,7 @@ import "./page5.css";
 import "./page6.css";
 import "./page7.css";
 import "./outro.css";
-import Circularbar from "../components/Circularbar1.jsx";
+import Circularbar from "../components/Circularbar1.js";
 import ScoreSummary from "../components/ScoreSummarySimple.js";
 
 

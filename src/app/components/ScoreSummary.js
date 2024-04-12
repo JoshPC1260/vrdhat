@@ -1,5 +1,5 @@
 import React from 'react';
-import Circularbar1 from "@/app/components/Circularbar1";
+import Circularbar1 from "../components/Circularbar1";
 
 const ScoreBar = ({ score, avgscore, label }) => {
   const score_percentage = (score / 250) * 100;
