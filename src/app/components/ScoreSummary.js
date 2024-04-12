@@ -8,17 +8,31 @@ const ScoreBar = ({ score, avgscore, label }) => {
   let avgbarColor = 'bg-red-500';
 
 
-  if (score_percentage >= 75) {
-    barColor = 'bg-green-500';
-  } else if (score_percentage >= 50) {
-    barColor = 'bg-orange-500';
+  if (score_percentage <= 20) {
+    barColor = 'bg-[#E23D3E]';
+  } else if (score_percentage <= 40) {
+    barColor = 'bg-[#EB7E5C]';
+  } else if (score_percentage <= 60) {
+    barColor = 'bg-[#F7C780]';
+  } else if (score_percentage <= 80) {
+    barColor = 'bg-[#A8D281]';
+  } else {
+    barColor = 'bg-[#4FDD83]';
   }
 
-  if (avgscore_percentage >= 75) {
-    avgbarColor = 'bg-green-500';
-  } else if (avgscore_percentage >= 50) {
-    avgbarColor = 'bg-orange-500';
+  if (avgscore_percentage <= 20) {
+    avgbarColor = 'bg-[#E23D3E]';
+  } else if (avgscore_percentage <= 40) {
+    avgbarColor = 'bg-[#EB7E5C]';
+  } else if (avgscore_percentage <= 60) {
+    avgbarColor = 'bg-[#F7C780]';
+  } else if (avgscore_percentage <= 80) {
+    avgbarColor = 'bg-[#A8D281]';
+  } else {
+    avgbarColor = 'bg-[#4FDD83]';
   }
+  
+  
 
   const scorePosition = `${score_percentage-5}%`;
   const avgscorePosition = `${avgscore_percentage-5}%`;
@@ -67,9 +81,7 @@ const ScoreBar = ({ score, avgscore, label }) => {
       </div>
     </div>
   </div>
-  <div className='text-lg text-slate-400 text-regular'>
-    Check your email for your church’s detailed report
-  </div>
+  
 </div>
   );
 };

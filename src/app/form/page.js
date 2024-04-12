@@ -93,7 +93,7 @@ export default function Page() {
                                 className='phone:text-md tablet-vertical:text-2xl font-bold hover:text-blue-500 text-slate-700'>
                                     Privacy Policy
                                     </Link>
-                                    , and VisitorReach contacting you via text and email. You can text STOP to cancel or HELP for assistance.
+                                    , and VisitorReach contacting you via text and email.
                         </label>
                     </div>
                 </div>

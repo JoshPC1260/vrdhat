@@ -14,14 +14,16 @@ export default function CircularProgressbar({ value, title, max_value }) {
   // Calculate colors based on progress
   const getGradientColor = (progress) => {
     // Adjust these ranges and colors as needed
-    if (progress <= 0.25) {
-      return '#ff0000';
-    } else if (progress <= 0.5) {
-      return 'yellow';
-    } else if (progress <= 0.75) {
-      return '#ff6e00';
+    if (progress <= 0.2) {
+      return '#E23D3E';
+    } else if (progress <= 0.4) {
+      return 'EB7E5C';
+    } else if (progress <= 0.6) {
+      return '#F7C780';
+    } else if (progress <= 0.8) {
+      return '#A8D281';
     } else {
-      return '#00ff5d';
+      return '#4FDD83';
     }
   };
 
