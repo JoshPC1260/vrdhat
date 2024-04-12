@@ -19,7 +19,10 @@ export default function SimpleResult() {
   const [vrWebsite, setvrWebsite] = useState(0);
   const [last_month_searches, set_last_month_searches] = useState(0);
   const [loc_city, setLoc_city] = useState("");
+  const [loc_zipcode, setLoc_zipcode] = useState("");
+  const [loc_address, setLoc_address] = useState("");
   const [loc_state, setLoc_state] = useState("");
+  const [webpage, setWebpage] = useState("");
 
 
   useEffect(() => {
@@ -39,7 +42,10 @@ export default function SimpleResult() {
         setvrWebsite(data.vrWebsite);
         set_last_month_searches(data.last_month_searches);
         setLoc_city(data.loc_city);
+        setLoc_address(data.loc_address);
+        setLoc_zipcode(data.loc_zipcodesetLoc_ziploc_zipcode);
         setLoc_state(data.loc_state);
+        setWebpage(data.website)
       } catch (error) {
         console.error('Error fetching data:', error);
       }

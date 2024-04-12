@@ -1,6 +1,4 @@
-/* eslint-disable react/no-unescaped-entities */
-/* eslint-disable jsx-a11y/alt-text */
-/* eslint-disable @next/next/no-img-element */
+
 "use client"
 import React, { useState, useEffect } from 'react';
 import "./style.css";
@@ -30,7 +28,10 @@ export default function FullReport() {
     const [vrWebsite, setvrWebsite] = useState(0);
     const [last_month_searches, set_last_month_searches] = useState(0);
     const [loc_city, setLoc_city] = useState("");
+    const [loc_zipcode, setLoc_zipcode] = useState("");
+    const [loc_address, setLoc_address] = useState("");
     const [loc_state, setLoc_state] = useState("");
+    const [webpage, setWebpage] = useState("");
 
     useEffect(() => {
         const fetchData = async () => {
@@ -51,7 +52,10 @@ export default function FullReport() {
             setvrWebsite(data.vrWebsite);
             set_last_month_searches(data.last_month_searches);
             setLoc_city(data.loc_city);
+            setLoc_address(data.loc_address);
+            setLoc_zipcode(data.loc_zipcodesetLoc_ziploc_zipcode);
             setLoc_state(data.loc_state);
+            setWebpage(data.website);
           } catch (error) {
             console.error('Error fetching data:', error);
           }
@@ -66,15 +70,15 @@ export default function FullReport() {
                 <img className="img-logo-main" src="Logo.png" />
                 <div className="main-text">
                     <h2 className="title1">Digital Health Assessment</h2>
-                    <h1 className="title2-intro">Dreamer's Church</h1>
+                    <h1 className="title2-intro">{church_name}</h1>
                     <div className="address-website">
                         <div className="address">
                             <img src="Group.png" alt="" />
-                            <p>10700 Anderson Mill Rd #150, Austin, TX 787505</p>
+                            <p>{loc_address}, {loc_city}, {loc_state} {loc_zipcode}</p>
                         </div>
                         <div className="website">
                             <img src="Group1.png" alt="" />
-                            <p>www.dreamers.church</p>
+                            <p>{webpage}</p>
                         </div>
                     </div>
                 </div>
@@ -485,7 +489,7 @@ export default function FullReport() {
                     <div className="ct1-outro">
                         <img className="img-logo-outro" src="img-logo-outro.png" />
                         <div className="main-text">
-                            <h1 className="title2">Grow Your <span id="title-ch-ct1">Church</span><br /> with VisitorReach</h1>
+                            <h1 className="title2 ">Grow Your <span id="title-ch-ct1">Church</span><br /> with VisitorReach</h1>
                             <p className="p-outro">To learn more about VisitorReach, <span id="color-p-outro">schedule<br />a quick 15 minute call</span>  with our team today.</p>
                         </div>
                         <img className="img-qr-outro" src="img-qr-outro.png" alt="" />

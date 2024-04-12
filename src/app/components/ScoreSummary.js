@@ -67,7 +67,9 @@ const ScoreBar = ({ score, avgscore, label }) => {
       </div>
     </div>
   </div>
-  
+  <div className='text-lg text-slate-400 text-regular'>
+    Check your email for your church’s detailed report
+  </div>
 </div>
   );
 };
