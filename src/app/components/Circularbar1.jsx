@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+
 export default function CircularProgressbar({ value, title, max_value }) {
   const strokeWidth = 5; // Ancho del trazo (stroke width)
   const radius = 85; // Radio del círculo (circle radius)
@@ -40,16 +41,18 @@ export default function CircularProgressbar({ value, title, max_value }) {
   };
 
   return (
-    <div className='h-full w-full flex flex-wrap items-center justify-center border-2 border-green-600'>
-      <h1
+    <div className=''>
+      
+      <text
         x="50%"
         y="0%"
-        className='text-zinc-50 w-full text-center font-bold text-3xl mb-3 border-2 border-green-600'
+        className='w-full text-center font-bold text-3xl mb-3'
         textAnchor="middle"
         dominantBaseline="middle"
+        fill="black"
       >
         {title}
-      </h1>
+      </text>
       <svg width="250" height="250" viewBox="0 0 200 200">
         {/* Background circle (full circle) */}
         <circle
@@ -69,7 +72,7 @@ export default function CircularProgressbar({ value, title, max_value }) {
           r={radius}
           fill="none"
           stroke={getGradientColor(progressRatio)}
-          strokeWidth={strokeWidth } // Adjust stroke width for visual differentiation
+          strokeWidth={strokeWidth} // Adjust stroke width for visual differentiation
           className="circle-progress"
           style={{
             strokeDasharray: progressDasharray,
@@ -80,29 +83,27 @@ export default function CircularProgressbar({ value, title, max_value }) {
         />
 
         {/* Labels */}
-        <p
+        <text
           x="50%"
           y="45%"
           textAnchor="middle"
           dominantBaseline="middle"
-          fill='#ddd'
-          style={{ fontWeight: '600' }}
-          className='text-zinc-800 text-bold text-8xl'
+          fill='#vr-title-first'
+          style={{ fontWeight: '600', fontSize: '4rem' }}
         >
           {getLetterScore(progressRatio)}
-        </p>
+        </text>
 
-        <p
+        <text
           x="50%"
           y="70%"
           textAnchor="middle"
           dominantBaseline="middle"
-          fill='#ddd'
-          style={{ fontWeight: '500' }}
-          className='text-zinc-800 text-bold text-1xl'
+          fill='#vr-title-first'
+          style={{ fontWeight: '500', fontSize: '1rem' }}
         >
           {value} out of {max_value}
-        </p>
+        </text>
       </svg>
     </div>
   );

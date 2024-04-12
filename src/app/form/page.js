@@ -1,16 +1,20 @@
 "use client"
-import React, { useState, FormEvent } from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
+import 'next/router'
+import { useRouter } from 'next/navigation' // Import useRouter hook
 
-const church_sizes = ['0-99', '100-299', '300-499', '500-999', '1,000-1,999', '2,000-4,999', '5,000-9,999', '10,000+']; // Replace with your list of cities
+
+
 
 
 
 export default function Page() {
-  const [isLoading, setIsLoading] = useState(false)
-
+    const church_sizes = ['0-99', '100-299', '300-499', '500-999', '1,000-1,999', '2,000-4,999', '5,000-9,999', '10,000+']; // Replace with your list of cities
+    const [isLoading, setIsLoading] = useState(false)
+    const router = useRouter() // Initialize the router
  
-  async function onSubmit(event) {
+    async function onSubmit(event) {
     event.preventDefault()
     setIsLoading(true) // Set loading to true when the request starts
  
@@ -25,12 +29,14 @@ export default function Page() {
         console.log(formData)
         // Handle response if necessary
         const data = await response.json()
+        router.push('/user_report')
         // ...
         } catch (error) {
         // Handle error if necessary
         console.error(error)
         } finally {
         setIsLoading(false) // Set loading to false when the request completes
+        
         }
   }
  
@@ -92,9 +98,12 @@ export default function Page() {
                     </div>
                 </div>
                 <div className='pt-10 pl-10 pb-10'>
-                    <button className= "w-60 h-14 rounded-full text-white text-2xl bg-vr-title-second hover:bg-slate-100 hover:text-vr-title-second hover:shadow-sm" type="submit" >
-                        Create Report
-                    </button>
+                     
+                        <button className= "w-60 h-14 rounded-full text-white text-2xl bg-vr-title-second hover:bg-slate-100 hover:text-vr-title-second hover:shadow-sm" type="submit" >
+                            Create Report
+                        </button>
+
+                    
                 </div>
                 
             </div>

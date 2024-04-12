@@ -1,8 +1,11 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, redirect, url_for
 from flask_mail import Mail, Message
 from flask_cors import CORS
 from church import church
 import metricas
+import http.client
+import json
+
 
 app = Flask(__name__)
 mail = Mail(app)
@@ -18,14 +21,45 @@ app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 mail = Mail(app)
 
+def post_contact_hubspot():
+
+    conn = http.client.HTTPSConnection("api.hubapi.com")
+    payload = json.dumps({
+    "properties": {
+        "email": church_obj.email,
+        "firstname": church_obj.first_name,
+        "lastname": church_obj.last_name,
+        "phone":church_obj.mobile_phone,
+        "digital_assessment":"Yes"
+    }
+    })
+    headers = {
+    'User-Agent': 'Apidog/1.0.0 (https://apidog.com)',
+    'Content-Type': 'application/json',
+    'Authorization' :'Bearer pat-na1-371803fb-9836-4b6e-8d59-8365c49bda2d'
+    }
+    conn.request("POST", "/crm/v3/objects/contacts?token=pat-na1-371803fb-9836-4b6e-8d59-8365c49bda2d", payload, headers)
+    res = conn.getresponse()
+    data = res.read()
+    return (data.decode("utf-8"))
+
+def send_email():
+    msg = Message( 
+            "Check your Digital Health Assessment report for your church: " + church_obj.name, 
+            sender ='jrivero.jesus@gmail.com', 
+            recipients = [church_obj.email] 
+            ) 
+    msg.body = church_obj.first_name + " " + church_obj.last_name + ' here is your Digital Health Assessment report attached as a PDF.'
+    mail.send(msg)
+
 @app.route('/submit-form', methods=['GET', 'POST'])
 def handle_form_submission():
-
+    try:
         print("entered func")
         # Access form data
         form_data = request.form
         print(f"Received form data: {form_data}")
-
+        global church_obj
         church_obj.first_name = form_data.get("firstName") 
         print("-------------------")
         church_obj.last_name = form_data.get("lastName") 
@@ -43,37 +77,44 @@ def handle_form_submission():
         church_obj.instagram_profile = form_data.get("churchInstagram")
 
         global volume_search_last_month
-        #volume_search_last_month = metricas.start_historical(church_obj.city, church_obj.state)
-        
-        print("**********")
+        try:
+            volume_search_last_month = metricas.start_historical(church_obj.city, church_obj.state)
+        except:
+            pass
+
         church_obj.get_digital_search_assesment_score()
-        print(church_obj.digital_search_assesment_score)
         church_obj.get_map_image()
-        print(church_obj.digital_search_assesment_score)
+        post_contact_hubspot()
+        send_email()
 
-        
-        print(volume_search_last_month)
-        print('Form submission received')
+        return jsonify({'message': 'Form submission received'}), 200  # Return 200 OK status code
 
-        return jsonify({'message': 'Form submission received'})
+    except Exception as e:
+        print('Failed to parse form data', e)
+        return jsonify({'error': 'Failed to parse form data'}), 400 
 
-data = {
-    'church_name': 'Grace Church',
-    'digitalVoice': 80,
-    'digitalMaps': 70,
-    'socialClarity': 60,
-    'websiteAuthority': 75,
-    'vrVoice': 90,
-    'vrMaps': 85,
-    'vrSocial': 75,
-    'vrWebsite': 80,
-    'last_month_searches': 1200,
-    'loc_city': 'New York',
-    'loc_state': 'NY'
-}
+
 
 @app.route('/api/fetch-data', methods=['GET'])
 def fetch_data():
+    data = {
+        'church_name': church_obj.name,
+        'digitalVoice': church_obj.voice_score,
+        'digitalMaps': church_obj.maps_score,
+        'appleMaps': church_obj.apple_maps_score,
+        'googleMaps': church_obj.google_maps_score,
+        'socialClarity': 0,
+        'websiteAuthority': church_obj.domain_trust_score,
+        'vrVoice': 225,
+        'vrMaps': 235,
+        'vrSocial': 195,
+        'vrWebsite':205,
+        'last_month_searches': volume_search_last_month,
+        'loc_city': church_obj.city,
+        'loc_state': church_obj.state
+    }
+    print(data)
+    print("published data")
     return jsonify(data)
 
 if __name__ == '__main__':

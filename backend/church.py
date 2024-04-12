@@ -114,6 +114,7 @@ class church:
         self.apple_category_score = 0
         self.apple_description_score = 0
         self.apple_schedule_score = 0
+        self.apple_maps_score = 0
 
         self.google_name = ""
         self.google_coordinates = ""
@@ -140,6 +141,7 @@ class church:
         self.google_category_score = 0
         self.google_description_score = 0
         self.google_schedule_score = 0
+        self.google_maps_score = 0
 
         self.yelp_name = ""
         self.yelp_coordinates = ""
@@ -175,13 +177,13 @@ class church:
 
     def get_map_image(self):
         base_url = "https://maps.googleapis.com/maps/api/staticmap?"
-        style = "&format=png&maptype=roadmap&style=element:geometry%7Ccolor:0xebe3cd&style=element:labels.text.fill%7Ccolor:0x523735&style=element:labels.text.stroke%7Ccolor:0xf5f1e6&style=feature:administrative%7Celement:geometry%7Cvisibility:off&style=feature:administrative%7Celement:geometry.stroke%7Ccolor:0xc9b2a6&style=feature:administrative.land_parcel%7Celement:geometry.stroke%7Ccolor:0xdcd2be&style=feature:administrative.land_parcel%7Celement:labels%7Cvisibility:off&style=feature:administrative.land_parcel%7Celement:labels.text.fill%7Ccolor:0xae9e90&style=feature:landscape.natural%7Celement:geometry%7Ccolor:0xdfd2ae&style=feature:poi%7Cvisibility:off&style=feature:poi%7Celement:geometry%7Ccolor:0xdfd2ae&style=feature:poi%7Celement:labels.text%7Cvisibility:off&style=feature:poi%7Celement:labels.text.fill%7Ccolor:0x93817c&style=feature:poi.park%7Celement:geometry.fill%7Ccolor:0xa5b076&style=feature:poi.park%7Celement:labels.text.fill%7Ccolor:0x447530&style=feature:road%7Celement:geometry%7Ccolor:0xf5f1e6&style=feature:road%7Celement:labels.icon%7Cvisibility:off&style=feature:road.arterial%7Celement:geometry%7Ccolor:0xfdfcf8&style=feature:road.arterial%7Celement:labels%7Cvisibility:off&style=feature:road.highway%7Celement:geometry%7Ccolor:0xf8c967&style=feature:road.highway%7Celement:geometry.stroke%7Ccolor:0xe9bc62&style=feature:road.highway%7Celement:labels%7Cvisibility:off&style=feature:road.highway.controlled_access%7Celement:geometry%7Ccolor:0xe98d58&style=feature:road.highway.controlled_access%7Celement:geometry.stroke%7Ccolor:0xdb8555&style=feature:road.local%7Cvisibility:off&style=feature:road.local%7Celement:labels%7Cvisibility:off&style=feature:road.local%7Celement:labels.text.fill%7Ccolor:0x806b63&style=feature:transit%7Cvisibility:off&style=feature:transit.line%7Celement:geometry%7Ccolor:0xdfd2ae&style=feature:transit.line%7Celement:labels.text.fill%7Ccolor:0x8f7d77&style=feature:transit.line%7Celement:labels.text.stroke%7Ccolor:0xebe3cd&style=feature:transit.station%7Celement:geometry%7Ccolor:0xdfd2ae&style=feature:water%7Celement:geometry.fill%7Ccolor:0xb9d3c2&style=feature:water%7Celement:labels.text.fill%7Ccolor:0x92998d&size=480x360"
+        style = "&format=png&maptype=roadmap&style=element:geometry%7Ccolor:0xf5f5f5&style=element:labels.text.fill%7Ccolor:0x523735&style=element:labels.text.stroke%7Ccolor:0xf5f1e6&style=feature:administrative%7Celement:geometry%7Cvisibility:off&style=feature:administrative%7Celement:geometry.stroke%7Ccolor:0xc9b2a6&style=feature:administrative.land_parcel%7Celement:geometry.stroke%7Ccolor:0xdcd2be&style=feature:administrative.land_parcel%7Celement:labels%7Cvisibility:off&style=feature:administrative.land_parcel%7Celement:labels.text.fill%7Ccolor:0xae9e90&style=feature:landscape.natural%7Celement:geometry%7Ccolor:0xdfd2ae&style=feature:poi%7Cvisibility:off&style=feature:poi%7Celement:geometry%7Ccolor:0xdfd2ae&style=feature:poi%7Celement:labels.text%7Cvisibility:off&style=feature:poi%7Celement:labels.text.fill%7Ccolor:0x93817c&style=feature:poi.park%7Celement:geometry.fill%7Ccolor:0xa5b076&style=feature:poi.park%7Celement:labels.text.fill%7Ccolor:0x447530&style=feature:road%7Celement:geometry%7Ccolor:0xf5f1e6&style=feature:road%7Celement:labels.icon%7Cvisibility:off&style=feature:road.arterial%7Celement:geometry%7Ccolor:0xfdfcf8&style=feature:road.arterial%7Celement:labels%7Cvisibility:off&style=feature:road.highway%7Celement:geometry%7Ccolor:0xf8c967&style=feature:road.highway%7Celement:geometry.stroke%7Ccolor:0xe9bc62&style=feature:road.highway%7Celement:labels%7Cvisibility:off&style=feature:road.highway.controlled_access%7Celement:geometry%7Ccolor:0xe98d58&style=feature:road.highway.controlled_access%7Celement:geometry.stroke%7Ccolor:0xdb8555&style=feature:road.local%7Cvisibility:off&style=feature:road.local%7Celement:labels%7Cvisibility:off&style=feature:road.local%7Celement:labels.text.fill%7Ccolor:0x806b63&style=feature:transit%7Cvisibility:off&style=feature:transit.line%7Celement:geometry%7Ccolor:0xdfd2ae&style=feature:transit.line%7Celement:labels.text.fill%7Ccolor:0x8f7d77&style=feature:transit.line%7Celement:labels.text.stroke%7Ccolor:0xebe3cd&style=feature:transit.station%7Celement:geometry%7Ccolor:0xdfd2ae&style=feature:water%7Celement:geometry.fill%7Ccolor:0xb9d3c2&style=feature:water%7Celement:labels.text.fill%7Ccolor:0x92998d&size=480x360"
         center = str(self.coordinates[0]) + "," + str(self.coordinates[1])
         zoom = 12
         marker = "&markers=color:gray%7C" + str(self.google_coordinates[0]) + "," + str(self.google_coordinates[1])
         complete_url = base_url + "center=" + center + "&zoom=" + str(zoom) + "&size=640x360&scale=2&key=" + GOOGLE_MAPS_KEY + style + marker
         request_map = requests.get(complete_url)
-        image_name = "../public/" + self.name
+        image_name = "../public/img-bg-page1"
         image_file = open(image_name + '.png', 'wb')
         image_file.write(request_map.content)
         image_file.close()
@@ -206,12 +208,12 @@ class church:
         for line in enumerate(data_lines):
             # Split the line by semicolon
             auth_score, backlinks = line[1].split(';')
-            
             # Convert the key and value to integers
             weighted += int(auth_score) * int(backlinks)
-            weights += int(auth_score)
+            weights += int(backlinks)
         weighted_average = weighted / weights
-        return weighted_average
+
+        return int(weighted_average*2.5)
 
     def get_semrush_authority_score(self):
         url = "https://api.semrush.com/analytics/v1/?key=" + SEMRUSH_API_KEY + "&type=backlinks_ascore_profile&target=" + self.webpage + "&target_type=root_domain"
@@ -244,7 +246,7 @@ class church:
     def get_digital_search_assesment_score(self):
         self.set_coordinates()
         #self.get_semrush_domain_organic_results()
-        #self.get_semrush_authority_score()
+        self.get_semrush_authority_score()
         self.get_maps_score()
         self.get_voice_score()
         self.digital_search_assesment_score += self.domain_trust_score + self.maps_score + self.voice_score
@@ -578,9 +580,10 @@ class church:
     def get_maps_score(self):
         self.get_google_score()
         self.get_apple_score()
-        self.maps_score += self.apple_name_score + self.apple_category_score + self.apple_description_score + self.apple_schedule_score + self.apple_webpage_score 
-        self.maps_score += self.apple_phone_score + self.apple_address_score + self.apple_state_score
-        self.maps_score += (self.google_name_score + self.google_category_score + self.google_description_score + self.google_schedule_score + self.google_webpage_score + self.google_phone_score + self.google_address_score + self.google_state_score)
+        self.apple_maps_score += self.apple_name_score + self.apple_category_score + self.apple_description_score + self.apple_schedule_score + self.apple_webpage_score 
+        self.apple_maps_score += self.apple_phone_score + self.apple_address_score + self.apple_state_score
+        self.google_maps_score += (self.google_name_score + self.google_category_score + self.google_description_score + self.google_schedule_score + self.google_webpage_score + self.google_phone_score + self.google_address_score + self.google_state_score)
+        self.maps_score += (self.apple_maps_score + self.google_maps_score)
 
     def set_duckduckgo_maps_att(self):
 
@@ -594,7 +597,7 @@ class church:
 
         search = GoogleSearch(params)
         results = search.get_dict()
-        print(results)
+
         local_results = results["local_results"]
 
         if len(local_results) > 1:

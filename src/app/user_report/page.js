@@ -25,7 +25,7 @@ export default function SimpleResult() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('/api/fetch-data');
+        const response = await fetch('http://localhost:5000/api/fetch-data');
         const data = await response.json();
   
         set_church_name(data.church_name);
@@ -42,12 +42,18 @@ export default function SimpleResult() {
         setLoc_state(data.loc_state);
       } catch (error) {
         console.error('Error fetching data:', error);
-      } finally {
-        setIsLoading(false);
       }
     };
   
     fetchData();
+  }, []);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 100); // 3000ms = 3s
+
+    return () => clearTimeout(timer); // Limpiar el temporizador si el componente se desmonta
   }, []);
 
   return (
@@ -99,13 +105,13 @@ export default function SimpleResult() {
                 </span>
               </p>
             </div>
-            <div className="m-auto mb-20  text-center  pt-10  w-2/4">
-              <p className='text-lg text-vr-body-color font-medium'>
-                Did you know there are <a className='text-2xl text-vr-title-second font-medium'>{last_month_searches} </a> Google searches for "churches near me" in <a className='text-2xl text-vr-title-second font-medium'>{loc_city} ,  {loc_state} </a>
+            <div className="m-auto mb-20  text-center  pt-10  w-3/4">
+              <p className='text-2xl text-vr-body-color font-medium block'>
+                Did you know there are <a className='text-2xl text-vr-title-second font-medium block'>{last_month_searches} </a> Google searches for "churches near me" in <a className='text-2xl text-vr-title-second font-medium block'>{loc_city} ,  {loc_state} </a>
               </p>
           </div>
 
-          <div style={{zoom : "0.7"}}>
+          <div style={{zoom : "0.95"}}>
             <ScoreSummary
             digitalVoiceScore={digitalVoice}
             digitalMapsScore={digitalMaps}
@@ -117,6 +123,11 @@ export default function SimpleResult() {
             avgWebsiteAuthorityScore={vrWebsite}
           />
 
+          </div>
+          <div className='pt-20 justify-center justify-items-center relative -right-20'>
+            <p className='text-2xl text-slate-400 text-regular'>
+              Check your email for your church’s detailed report
+            </p>
           </div>
           
           </section>

@@ -72,7 +72,7 @@ const ScoreBar = ({ score, avgscore, label }) => {
   );
 };
 
-const ScoreSummary = ({
+const ScoreSummarySimple = ({
   digitalVoiceScore,
   avgDigitalVoiceScore,
   digitalMapsScore,
@@ -84,7 +84,7 @@ const ScoreSummary = ({
 }) => {
   return (
     <div className='grid grid-cols-3 bg-white rounded-3xl w-11/12 p-4 shadow-2xl'>
-      <div className='col-span-2 '>
+      <div className='col-span-3 '>
         <h2 className="text-2xl m-4 text-black font-medium ">
           Digital Health Score Summary
         </h2>
@@ -113,23 +113,9 @@ const ScoreSummary = ({
           </div>
         </div>
       </div>
-      <div className="flex flex-col items-center justify-center">
-        <h1 className="text-2xl m-4 text-black font-medium text-center">
-          Your Church's Total <br /> Digital Health Score
-        </h1>
-        <Circularbar1
-          value={
-            digitalVoiceScore +
-            digitalMapsScore +
-            socialClarityScore +
-            websiteAuthorityScore
-          }
-          title={""}
-          max_value={1000}
-        />
-      </div>
+      
     </div>
   );
 };
 
-export default ScoreSummary;
+export default ScoreSummarySimple;
