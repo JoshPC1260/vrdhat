@@ -22,7 +22,7 @@ export default function Page() {
         console.log("submited form")
         const formData = new FormData(event.currentTarget)
         
-        const response = await fetch('http://localhost:5000/submit-form', {
+        const response = await fetch('http://localhost:8080/submit-form', {
             method: 'POST',
             body: formData,
         })
