@@ -36,7 +36,7 @@ export default function FullReport() {
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await fetch('http://localhost:5000/api/fetch-data');
+            const response = await fetch('http://localhost:8080/api/fetch-data');
             const data = await response.json();
       
             set_church_name(data.church_name);
