@@ -5,7 +5,7 @@ import string
 from fuzzywuzzy import fuzz
 import numpy as np
 import requests
-
+import os
 states_dic = {
         'AK': 'Alaska',
         'AL': 'Alabama',
@@ -66,9 +66,9 @@ states_dic = {
         'WY': 'Wyoming'
 }
 
-SEMRUSH_API_KEY = "761e9713442ef45b68400df5a7bc0d8c"
-SERPAPI_API_KEY = "96c3d465b8470ed1428f75088b03572726aa41b1f40a401749a3970d48a8b2a0"
-GOOGLE_MAPS_KEY = "AIzaSyBHiJPXMHhvuG6gBFlIsfV9YABqsv0dQSY"
+SEMRUSH_API_KEY = os.environ.get('SEMRUSH_API_KEY')
+SERPAPI_API_KEY = os.environ.get('SERPAPI_API_KEY')
+GOOGLE_MAPS_KEY = os.environ.get('GOOGLE_MAPS_KEY')
 
 class church:
     
@@ -176,17 +176,21 @@ class church:
         self.digital_search_assesment_score = 0
 
     def get_map_image(self):
+        print("test in")
         base_url = "https://maps.googleapis.com/maps/api/staticmap?"
-        style = "&format=png&maptype=roadmap&style=element:geometry%7Ccolor:0xf5f5f5&style=element:labels.text.fill%7Ccolor:0x523735&style=element:labels.text.stroke%7Ccolor:0xf5f1e6&style=feature:administrative%7Celement:geometry%7Cvisibility:off&style=feature:administrative%7Celement:geometry.stroke%7Ccolor:0xc9b2a6&style=feature:administrative.land_parcel%7Celement:geometry.stroke%7Ccolor:0xdcd2be&style=feature:administrative.land_parcel%7Celement:labels%7Cvisibility:off&style=feature:administrative.land_parcel%7Celement:labels.text.fill%7Ccolor:0xae9e90&style=feature:landscape.natural%7Celement:geometry%7Ccolor:0xdfd2ae&style=feature:poi%7Cvisibility:off&style=feature:poi%7Celement:geometry%7Ccolor:0xdfd2ae&style=feature:poi%7Celement:labels.text%7Cvisibility:off&style=feature:poi%7Celement:labels.text.fill%7Ccolor:0x93817c&style=feature:poi.park%7Celement:geometry.fill%7Ccolor:0xa5b076&style=feature:poi.park%7Celement:labels.text.fill%7Ccolor:0x447530&style=feature:road%7Celement:geometry%7Ccolor:0xf5f1e6&style=feature:road%7Celement:labels.icon%7Cvisibility:off&style=feature:road.arterial%7Celement:geometry%7Ccolor:0xfdfcf8&style=feature:road.arterial%7Celement:labels%7Cvisibility:off&style=feature:road.highway%7Celement:geometry%7Ccolor:0xf8c967&style=feature:road.highway%7Celement:geometry.stroke%7Ccolor:0xe9bc62&style=feature:road.highway%7Celement:labels%7Cvisibility:off&style=feature:road.highway.controlled_access%7Celement:geometry%7Ccolor:0xe98d58&style=feature:road.highway.controlled_access%7Celement:geometry.stroke%7Ccolor:0xdb8555&style=feature:road.local%7Cvisibility:off&style=feature:road.local%7Celement:labels%7Cvisibility:off&style=feature:road.local%7Celement:labels.text.fill%7Ccolor:0x806b63&style=feature:transit%7Cvisibility:off&style=feature:transit.line%7Celement:geometry%7Ccolor:0xdfd2ae&style=feature:transit.line%7Celement:labels.text.fill%7Ccolor:0x8f7d77&style=feature:transit.line%7Celement:labels.text.stroke%7Ccolor:0xebe3cd&style=feature:transit.station%7Celement:geometry%7Ccolor:0xdfd2ae&style=feature:water%7Celement:geometry.fill%7Ccolor:0xb9d3c2&style=feature:water%7Celement:labels.text.fill%7Ccolor:0x92998d&size=480x360"
+        style = "&format=png&maptype=roadmap&style=element:geometry%7Ccolor:0xf5f5f5&style=element:labels.icon%7Cvisibility:off&style=element:labels.text.fill%7Ccolor:0x616161&style=element:labels.text.stroke%7Ccolor:0xf5f5f5&style=feature:administrative.land_parcel%7Celement:labels.text.fill%7Ccolor:0xbdbdbd&style=feature:poi%7Celement:geometry%7Ccolor:0xeeeeee&style=feature:poi%7Celement:labels.text.fill%7Ccolor:0x757575&style=feature:poi.park%7Celement:geometry%7Ccolor:0xe5e5e5&style=feature:poi.park%7Celement:labels.text.fill%7Ccolor:0x9e9e9e&style=feature:road%7Celement:geometry%7Ccolor:0xffffff&style=feature:road.arterial%7Celement:labels.text.fill%7Ccolor:0x757575&style=feature:road.highway%7Celement:geometry%7Ccolor:0xdadada&style=feature:road.highway%7Celement:labels.text.fill%7Ccolor:0x616161&style=feature:road.local%7Celement:labels.text.fill%7Ccolor:0x9e9e9e&style=feature:transit.line%7Celement:geometry%7Ccolor:0xe5e5e5&style=feature:transit.station%7Celement:geometry%7Ccolor:0xeeeeee&style=feature:water%7Celement:geometry%7Ccolor:0xc9c9c9&style=feature:water%7Celement:labels.text.fill%7Ccolor:0x9e9e9e"
+        print(GOOGLE_MAPS_KEY)
         center = str(self.coordinates[0]) + "," + str(self.coordinates[1])
         zoom = 12
         marker = "&markers=color:gray%7C" + str(self.google_coordinates[0]) + "," + str(self.google_coordinates[1])
         complete_url = base_url + "center=" + center + "&zoom=" + str(zoom) + "&size=640x360&scale=2&key=" + GOOGLE_MAPS_KEY + style + marker
+        print(complete_url)
         request_map = requests.get(complete_url)
         image_name = "../public/img-bg-page1"
         image_file = open(image_name + '.png', 'wb')
         image_file.write(request_map.content)
         image_file.close()
+        print("test out")
 
 
 

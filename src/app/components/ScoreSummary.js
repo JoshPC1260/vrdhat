@@ -141,6 +141,11 @@ const ScoreSummary = ({
           title={""}
           max_value={1000}
         />
+        <div className='pt-20 justify-center justify-items-center text-center'>
+            <p className='text-2xl text-slate-500 text-regular'>
+              Check your email for your church’s detailed report
+            </p>
+          </div>
       </div>
     </div>
   );

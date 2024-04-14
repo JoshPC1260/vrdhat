@@ -1,5 +1,5 @@
 "use client"
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
 import 'next/router'
 import { useRouter } from 'next/navigation' // Import useRouter hook
@@ -13,123 +13,35 @@ export default function Page() {
     const church_sizes = ['0-99', '100-299', '300-499', '500-999', '1,000-1,999', '2,000-4,999', '5,000-9,999', '10,000+']; // Replace with your list of cities
     const [isLoading, setIsLoading] = useState(false)
     const router = useRouter() // Initialize the router
-    const [showAnimation, setShowAnimation] = useState(false);
-    const [submitted, setSubmitted] = useState(false); // Track form submission state
-
-    const [church_name, set_church_name] = useState('');
-    const [digitalVoice, setDigitalVoice] = useState(0);
-    const [digitalMaps, setDigitalMaps] = useState(0);
-    const [socialClarity, setsocialClarity] = useState(0);
-    const [websiteAuthority, setwebsiteAuthority] = useState(0);
-    const [vrVoice, setvrVoice] = useState(0);
-    const [vrMaps, setvrMaps] = useState(0);
-    const [vrSocial, setvrSocial] = useState(0);
-    const [vrWebsite, setvrWebsite] = useState(0);
-    const [last_month_searches, set_last_month_searches] = useState(0);
-    const [loc_city, setLoc_city] = useState("");
-    const [loc_zipcode, setLoc_zipcode] = useState("");
-    const [loc_address, setLoc_address] = useState("");
-    const [loc_state, setLoc_state] = useState("");
-    const [webpage, setWebpage] = useState("");
-
-    useEffect(() => {
-        const fetchData = async () => {
-          try {
-            const response = await fetch('http://localhost:5000/api/fetch-data'); 
-            const data = await response.json();
-      
-            set_church_name(data.church_name);
-            setDigitalVoice(data.digitalVoice);
-            setDigitalMaps(data.digitalMaps);
-            setsocialClarity(data.socialClarity);
-            setwebsiteAuthority(data.websiteAuthority);
-            setvrVoice(data.vrVoice);
-            setvrMaps(data.vrMaps);
-            setvrSocial(data.vrSocial);
-            setvrWebsite(data.vrWebsite);
-            set_last_month_searches(data.last_month_searches);
-            setLoc_city(data.loc_city);
-            setLoc_address(data.loc_address);
-            setLoc_zipcode(data.loc_zipcodesetLoc_ziploc_zipcode);
-            setLoc_state(data.loc_state);
-            setWebpage(data.website)
-          } catch (error) {
-            console.error('Error fetching data:', error);
-          }
-        };
-      
-        fetchData();
-      }, []);
-
-
-    useEffect(() => {
-        if (submitted) {
-          const timeoutId = setTimeout(() => setShowAnimation(true), 8000); // Show after 8 seconds if submitted
-    
-          return () => clearTimeout(timeoutId);
-        }
-      }, [submitted]); // Re-run effect on submit state change
  
     async function onSubmit(event) {
     event.preventDefault()
-    
+    setIsLoading(true) // Set loading to true when the request starts
  
     try {
         console.log("submited form")
         const formData = new FormData(event.currentTarget)
         
-        const response = await fetch('http://34.202.236.86:8080/submit-form', {
+        const response = await fetch('http://localhost:5000/submit-form', {
             method: 'POST',
             body: formData,
         })
         console.log(formData)
         // Handle response if necessary
         const data = await response.json()
-        
-        setSubmitted(true)
+        router.push('/user_report')
         // ...
         } catch (error) {
         // Handle error if necessary
         console.error(error)
         } finally {
-        router.push('/user_report')
+        setIsLoading(false) // Set loading to false when the request completes
+        
         }
   }
  
   return (
-    <div id='loading_page' className="m-auto justify-center min-h-screen flex flex-col mt-20">
-      {isLoading ? (
-        <div className="pt loading flex-grow flex flex-col justify-center items-center">
-          <div className='flex flex-col items-center w-2/12'>
-            <Image
-              src="message 1.svg"
-              alt="Picture of the author"
-              width={400}
-              height={400}
-            />
-            
-          </div>
-
-          <div className="mb-20  text-center  pt-40 w-5/6">
-            <p className='text-2xl text-vr-body-color font-medium'>
-              Visitor Reach helps churches like yours make <a className='text-2xl text-vr-title-second font-medium block'>10 - 30 connections per week</a> with people looking for a church to attend.
-            </p>
-          </div>
-
-          <div className='relative'>
-              <Player
-                autoplay
-                loop
-                src="https://lottie.host/e0da974d-e53a-490f-89fa-0e9f8f16c209/Je1BihubMQ.json"
-                style={{ width: '400px', height: '200px' }}
-              >
-                <Controls visible={false} buttons={['play', 'repeat', 'frame', 'debug']} />
-              </Player>
-            </div>
-        </div>
-      ) : (
-        
-        <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit}>
         <div className="">
             <h1 className="relative tablet-vertical:top-36 phone:top-20 phone::left-20 tablet-vertical:left-44 tablet-vertical:text-6xl phone:text-2xl w-2/3 text-vr-form-title font-medium" >Let’s get some information for your report</h1>
             <div className='m-auto mt-60 flex flex-wrap rounded-2xl bg-white border-solid border-2 border-slate-200  w-5/6'>
@@ -199,8 +111,5 @@ export default function Page() {
             
         </div>
     </form>
-        
-      )}
-    </div>
-  );
+  )
 }

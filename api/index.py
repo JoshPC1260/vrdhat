@@ -5,7 +5,9 @@ from church import church
 import metricas
 import http.client
 import json
+import os
 
+HUBSPOT_API_KEY = os.environ.get('HUBSPOT_API_KEY')
 
 app = Flask(__name__)
 mail = Mail(app)
@@ -36,9 +38,19 @@ def post_contact_hubspot():
     headers = {
     'User-Agent': 'Apidog/1.0.0 (https://apidog.com)',
     'Content-Type': 'application/json',
-    'Authorization' :'Bearer pat-na1-371803fb-9836-4b6e-8d59-8365c49bda2d'
+    'Authorization' : f'Bearer {HUBSPOT_API_KEY}'
     }
-    conn.request("POST", "/crm/v3/objects/contacts?token=pat-na1-371803fb-9836-4b6e-8d59-8365c49bda2d", payload, headers)
+    conn.request("POST", f"/crm/v3/objects/contacts?{HUBSPOT_API_KEY}", payload, headers)
+    res = conn.getresponse()
+    data = res.read()
+    
+    conn = http.client.HTTPSConnection("api.hubapi.com")
+    headers = {
+    'User-Agent': 'Apidog/1.0.0 (https://apidog.com)',
+    'Content-Type': 'application/json',
+    'Authorization' : f'Bearer {HUBSPOT_API_KEY}'
+    }
+    conn.request("POST", f"/crm/v3/objects/contacts?{HUBSPOT_API_KEY}", payload, headers)
     res = conn.getresponse()
     data = res.read()
     return (data.decode("utf-8"))
@@ -110,12 +122,15 @@ def fetch_data():
         'vrSocial': 195,
         'vrWebsite':205,
         'last_month_searches': volume_search_last_month,
+        'loc_address': church_obj.address,
+        'loc_zipcode': church_obj.zipcode,
         'loc_city': church_obj.city,
-        'loc_state': church_obj.state
+        'loc_state': church_obj.state,
+        'website' : church_obj.webpage
     }
     print(data)
     print("published data")
     return jsonify(data)
 
 if __name__ == '__main__':
-    app.run(debug=True, host="0.0.0.0", port=5000)
+    app.run(debug=True, host="0.0.0.0", port=8080)
