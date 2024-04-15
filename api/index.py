@@ -144,7 +144,7 @@ def fetch_data():
     print("published data")
     return jsonify(data)
 
-@app.route('/')
+@app.route('/test')
 def home():
     return jsonify({'message':'test'})
 
