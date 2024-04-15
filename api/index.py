@@ -42,10 +42,12 @@ def post_contact_hubspot():
     'Content-Type': 'application/json',
     'Authorization' : f'Bearer {HUBSPOT_API_KEY}'
     }
-    conn.request("POST", f"/crm/v3/objects/contacts?{HUBSPOT_API_KEY}", payload, headers)
-    res = conn.getresponse()
-    data = res.read()
-    
+    try:
+        conn.request("POST", f"/crm/v3/objects/contacts?{HUBSPOT_API_KEY}", payload, headers)
+        res = conn.getresponse()
+        data = res.read()
+    except: 
+        print("Contact injection fail")
     conn = http.client.HTTPSConnection("api.hubapi.com")
     payload = json.dumps({
     "properties": {
@@ -62,10 +64,14 @@ def post_contact_hubspot():
     'Content-Type': 'application/json',
     'Authorization' : f'Bearer {HUBSPOT_API_KEY}'
     }
-    conn.request("POST", f"/crm/v3/objects/companies?{HUBSPOT_API_KEY}", payload, headers)
-    res = conn.getresponse()
-    data = res.read()
-    return (data.decode("utf-8"))
+    try:
+        conn.request("POST", f"/crm/v3/objects/companies?{HUBSPOT_API_KEY}", payload, headers)
+        res = conn.getresponse()
+        data = res.read()
+    except:
+        print("Contact injection fail2")
+    
+    #return (data.decode("utf-8"))
 
 
 def send_email():
