@@ -18,7 +18,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${poppins.className} antialiased bg-gradient-to-br from-sky-200 from-5% via-white to-white`}>{children}</body>
+
+      <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/44122818.js"></script>
+
+      <body className={`${poppins.className} antialiased bg-gradient-to-br from-sky-200 from-5% via-white to-white`}>
+        
+        {children}
+        </body>
     </html>
   );
 }

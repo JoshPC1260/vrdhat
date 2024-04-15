@@ -32,7 +32,9 @@ def post_contact_hubspot():
         "firstname": church_obj.first_name,
         "lastname": church_obj.last_name,
         "phone":church_obj.mobile_phone,
-        "digital_assessment":"Yes"
+        "digital_assessment":"Yes",
+        "company" : church_obj.name,
+        "hs_marketable_status": "Marketing contact"
     }
     })
     headers = {
@@ -45,12 +47,22 @@ def post_contact_hubspot():
     data = res.read()
     
     conn = http.client.HTTPSConnection("api.hubapi.com")
+    payload = json.dumps({
+    "properties": {
+        "company": church_obj.name,
+        "company_size" : church_obj.size,
+        "phone" : church_obj.phone,
+        "city" : church_obj.city,
+        "country" : "United States",
+        
+    }
+    })
     headers = {
     'User-Agent': 'Apidog/1.0.0 (https://apidog.com)',
     'Content-Type': 'application/json',
     'Authorization' : f'Bearer {HUBSPOT_API_KEY}'
     }
-    conn.request("POST", f"/crm/v3/objects/contacts?{HUBSPOT_API_KEY}", payload, headers)
+    conn.request("POST", f"/crm/v3/objects/companies?{HUBSPOT_API_KEY}", payload, headers)
     res = conn.getresponse()
     data = res.read()
     return (data.decode("utf-8"))
@@ -133,4 +145,4 @@ def fetch_data():
     return jsonify(data)
 
 if __name__ == '__main__':
-    app.run(debug=True, host="0.0.0.0", port=8080)
+    app.run()

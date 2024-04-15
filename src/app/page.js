@@ -1,11 +1,22 @@
+"use client"
 import React from "react";
 import Image from 'next/image'
 import "./globals.css";
 import Link from 'next/link'
+import Pdf from 'react-to-pdf';
+import { useRef, useState } from 'react';
 
 export default function Home() {
+  const ref = useRef();
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-20 overscroll-none ">
+      <Pdf targetRef={ref} filename="document.pdf">
+				{({ toPdf }) => (
+					<button onClick={toPdf} className="button bg-black">
+						Generate PDF
+					</button>
+				)}
+			</Pdf>
       <div className = "img-logo">
           <Image
           src={"Logo.svg"}
