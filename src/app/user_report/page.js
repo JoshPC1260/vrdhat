@@ -5,7 +5,6 @@ import { Player, Controls } from '@lottiefiles/react-lottie-player';
 import Circularbar from "../components/Circularbar";
 import Image from 'next/image'
 import ScoreSummary from '../components/ScoreSummary';
-import Link from 'next/link'
 
 export default function SimpleResult() {
   const [isLoading, setIsLoading] = useState(true);
@@ -29,7 +28,7 @@ export default function SimpleResult() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://3.93.52.82:8080/api/fetch-data'); 
+        const response = await fetch('http://54.221.79.123:8080/api/fetch-data');
         const data = await response.json();
   
         set_church_name(data.church_name);
@@ -58,9 +57,9 @@ export default function SimpleResult() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 1); 
+    }, 100); // 3000ms = 3s
 
-    return () => clearTimeout(timer); 
+    return () => clearTimeout(timer); // Limpiar el temporizador si el componente se desmonta
   }, []);
 
   return (
@@ -98,7 +97,7 @@ export default function SimpleResult() {
         
         <div
           id="church_result"
-          className="pt-40 flex-grow flex flex-col justify-center items-center w-full"
+          className="pt flex-grow flex flex-col justify-center items-center"
         >
           <br />
           <section id="intro" className="-mt-52">
@@ -113,12 +112,12 @@ export default function SimpleResult() {
               </p>
             </div>
             <div className="m-auto mb-20  text-center  pt-10  w-3/4">
-              <p className='text-xl text-vr-body-color font-medium block'>
-                Did you know there are <a className='text-xl text-vr-title-second font-medium block'>{last_month_searches} </a> Google searches for "churches near me" in <a className='text-xl text-vr-title-second font-medium block'>{loc_city} ,  {loc_state} </a>
+              <p className='text-2xl text-vr-body-color font-medium block'>
+                Did you know there are <a className='text-2xl text-vr-title-second font-medium block'>{last_month_searches} </a> Google searches for "churches near me" in <a className='text-2xl text-vr-title-second font-medium block'>{loc_city} ,  {loc_state} </a>
               </p>
           </div>
 
-          <div className="relative -top-12" style={{zoom : "0.9"}}>
+          <div style={{zoom : "0.95"}}>
             <ScoreSummary
             digitalVoiceScore={digitalVoice}
             digitalMapsScore={digitalMaps}
@@ -131,13 +130,13 @@ export default function SimpleResult() {
           />
 
           </div>
+          <div className='pt-20 justify-center justify-items-center relative -right-20'>
+            <p className='text-2xl text-slate-400 text-regular'>
+              Check your email for your church’s detailed report
+            </p>
+          </div>
           
           </section>
-          <Link href="">
-            <button className="text-2xl font-medium text-white rounded-full hover:bg-white bg-gradient-to-br from-vr-button-first via-vr-button-second to-vr-button-third hover:text-vr-button-third mt-40 h-16 w-[550px] relative -top-40">
-              schedule a 15 minute call to learn more
-            </button>
-          </Link>
         </div>
       )}
     </div>
