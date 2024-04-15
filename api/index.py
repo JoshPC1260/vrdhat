@@ -144,5 +144,9 @@ def fetch_data():
     print("published data")
     return jsonify(data)
 
+@app.route('/')
+def home():
+    return jsonify({'message':'test'})
+
 if __name__ == '__main__':
     app.run(port=8080)
