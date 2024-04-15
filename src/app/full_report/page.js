@@ -490,7 +490,16 @@ export default function FullReport() {
                         <img className="img-logo-outro" src="img-logo-outro.png" />
                         <div className="main-text">
                             <h1 className="title2 ">Grow Your <span id="title-ch-ct1">Church</span><br /> with VisitorReach</h1>
-                            <p className="p-outro">To learn more about VisitorReach, <span id="color-p-outro">schedule<br />a quick 15 minute call</span>  with our team today.</p>
+                            <p className="p-outro">
+                                
+                                To learn more about VisitorReach, 
+                                <span id="color-p-outro">
+                                    <a href = "https://www.visitorreach.com/get-started">    
+                                        schedule<br />a quick 15 minute call
+                                    </a> 
+                                    
+                                </span>  with our team today.</p>
+                                
                         </div>
                         <img className="img-qr-outro" src="img-qr-outro.png" alt="" />
                     </div>

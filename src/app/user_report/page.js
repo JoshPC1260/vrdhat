@@ -133,8 +133,8 @@ export default function SimpleResult() {
           </div>
           
           </section>
-          <Link href="">
-            <button className="text-2xl font-medium text-white rounded-full hover:bg-white bg-gradient-to-br from-vr-button-first via-vr-button-second to-vr-button-third hover:text-vr-button-third mt-40 h-16 w-[550px] relative -top-40">
+          <Link href="https://www.visitorreach.com/get-started">
+            <button className="text-2xl font-medium text-white rounded-full hover:bg-white bg-gradient-to-br from-vr-button-first via-vr-button-second to-vr-button-third hover:text-vr-button-third mt-40 h-16 w-[550px] relative -top-40" >
               schedule a 15 minute call to learn more
             </button>
           </Link>

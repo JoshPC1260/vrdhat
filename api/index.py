@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, redirect, url_for
+from flask import Flask, request, jsonify, redirect, url_for, render_template
 from flask_mail import Mail, Message
 from flask_cors import CORS
 from church import church
@@ -67,13 +67,14 @@ def post_contact_hubspot():
     data = res.read()
     return (data.decode("utf-8"))
 
+
 def send_email():
     msg = Message( 
             "Check your Digital Health Assessment report for your church: " + church_obj.name, 
             sender ='jrivero.jesus@gmail.com', 
             recipients = [church_obj.email] 
             ) 
-    msg.body = church_obj.first_name + " " + church_obj.last_name + ' here is your Digital Health Assessment report attached as a PDF.'
+    msg.html = render_template("email.html", first_name = church_obj.first_name)
     mail.send(msg)
 
 @app.route('/submit-form', methods=['GET', 'POST'])
@@ -144,9 +145,9 @@ def fetch_data():
     print("published data")
     return jsonify(data)
 
-@app.route('/test')
-def home():
-    return jsonify({'message':'test'})
+@app.route("/test")
+def test():
+    return jsonify({"message" : "test"})
 
 if __name__ == '__main__':
-    app.run(debug=True, host="0.0.0.0", port=8080)
+    app.run(debug=True, host="0.0.0.0" port = 8080)

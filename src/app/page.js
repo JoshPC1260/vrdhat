@@ -10,13 +10,6 @@ export default function Home() {
   const ref = useRef();
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-20 overscroll-none ">
-      <Pdf targetRef={ref} filename="document.pdf">
-				{({ toPdf }) => (
-					<button onClick={toPdf} className="button bg-black">
-						Generate PDF
-					</button>
-				)}
-			</Pdf>
       <div className = "img-logo">
           <Image
           src={"Logo.svg"}
@@ -65,6 +58,8 @@ export default function Home() {
                   </button>
                 </Link>
               </div>
+              
+              
             </div>
             
             
