@@ -78,7 +78,7 @@ export default function Page() {
         console.log("submited form")
         const formData = new FormData(event.currentTarget)
         
-        const response = await fetch('http://34.202.236.86:8080/submit-form', {
+        const response = await fetch('http://3.93.52.82:8080/submit-form', {
             method: 'POST',
             body: formData,
         })

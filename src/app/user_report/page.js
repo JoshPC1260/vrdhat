@@ -29,7 +29,7 @@ export default function SimpleResult() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://34.202.236.86:8080/api/fetch-data'); 
+        const response = await fetch('http://3.93.52.82:8080/api/fetch-data'); 
         const data = await response.json();
   
         set_church_name(data.church_name);
