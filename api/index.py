@@ -22,7 +22,7 @@ app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 mail = Mail(app)
 
-current_church_obj = None
+current_church_obj = church()
 
 def post_contact_hubspot(church_obj):
 
@@ -125,6 +125,7 @@ def handle_form_submission():
 
 @app.route('/api/fetch-data', methods=['GET'])
 def fetch_data():
+    global current_church_obj
     data = {
         'church_name': current_church_obj.name,
         'digitalVoice': current_church_obj.voice_score,
