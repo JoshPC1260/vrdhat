@@ -12,7 +12,6 @@ HUBSPOT_API_KEY = os.environ.get('HUBSPOT_API_KEY')
 app = Flask(__name__)
 mail = Mail(app)
 CORS(app)
-church_obj = church()
 volume_search_last_month = 0
 
 app.config['MAIL_SERVER'] = "smtp.gmail.com"
@@ -23,7 +22,9 @@ app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 mail = Mail(app)
 
-def post_contact_hubspot():
+current_church_obj = None
+
+def post_contact_hubspot(church_obj):
 
     conn = http.client.HTTPSConnection("api.hubapi.com")
     payload = json.dumps({
@@ -42,12 +43,10 @@ def post_contact_hubspot():
     'Content-Type': 'application/json',
     'Authorization' : f'Bearer {HUBSPOT_API_KEY}'
     }
-    try:
-        conn.request("POST", f"/crm/v3/objects/contacts?{HUBSPOT_API_KEY}", payload, headers)
-        res = conn.getresponse()
-        data = res.read()
-    except: 
-        print("Contact injection fail")
+    conn.request("POST", f"/crm/v3/objects/contacts?{HUBSPOT_API_KEY}", payload, headers)
+    res = conn.getresponse()
+    data = res.read()
+    
     conn = http.client.HTTPSConnection("api.hubapi.com")
     payload = json.dumps({
     "properties": {
@@ -64,33 +63,30 @@ def post_contact_hubspot():
     'Content-Type': 'application/json',
     'Authorization' : f'Bearer {HUBSPOT_API_KEY}'
     }
-    try:
-        conn.request("POST", f"/crm/v3/objects/companies?{HUBSPOT_API_KEY}", payload, headers)
-        res = conn.getresponse()
-        data = res.read()
-    except:
-        print("Contact injection fail2")
-    
-    #return (data.decode("utf-8"))
+    conn.request("POST", f"/crm/v3/objects/companies?{HUBSPOT_API_KEY}", payload, headers)
+    res = conn.getresponse()
+    data = res.read()
+    return (data.decode("utf-8"))
 
 
-def send_email():
+def send_email(church_obj):
+
     msg = Message( 
             "Check your Digital Health Assessment report for your church: " + church_obj.name, 
             sender ='jrivero.jesus@gmail.com', 
             recipients = [church_obj.email] 
             ) 
-    msg.html = render_template("email.html", first_name = church_obj.first_name)
+    #msg.html = render_template("email.html", first_name = church_obj.first_name)
     mail.send(msg)
 
 @app.route('/submit-form', methods=['GET', 'POST'])
 def handle_form_submission():
-    try:
-        print("entered func")
-        # Access form data
+        global current_church_obj
+        church_obj = church()
+
         form_data = request.form
         print(f"Received form data: {form_data}")
-        global church_obj
+
         church_obj.first_name = form_data.get("firstName") 
         print("-------------------")
         church_obj.last_name = form_data.get("lastName") 
@@ -106,46 +102,47 @@ def handle_form_submission():
         church_obj.phone = form_data.get("churchPhone")
         church_obj.facebook_profile = form_data.get("churchFacebook")
         church_obj.instagram_profile = form_data.get("churchInstagram")
+        print("**********************")
 
         global volume_search_last_month
         try:
             volume_search_last_month = metricas.start_historical(church_obj.city, church_obj.state)
         except:
             pass
-
+        print(".......................")
         church_obj.get_digital_search_assesment_score()
+        print(":::::::::::::::::::::::::")
         church_obj.get_map_image()
-        post_contact_hubspot()
-        send_email()
+        post_contact_hubspot(church_obj)
+        send_email(church_obj)
+        current_church_obj = church_obj
 
         return jsonify({'message': 'Form submission received'}), 200  # Return 200 OK status code
 
-    except Exception as e:
-        print('Failed to parse form data', e)
-        return jsonify({'error': 'Failed to parse form data'}), 400 
+
 
 
 
 @app.route('/api/fetch-data', methods=['GET'])
 def fetch_data():
     data = {
-        'church_name': church_obj.name,
-        'digitalVoice': church_obj.voice_score,
-        'digitalMaps': church_obj.maps_score,
-        'appleMaps': church_obj.apple_maps_score,
-        'googleMaps': church_obj.google_maps_score,
+        'church_name': current_church_obj.name,
+        'digitalVoice': current_church_obj.voice_score,
+        'digitalMaps': current_church_obj.maps_score,
+        'appleMaps': current_church_obj.apple_maps_score,
+        'googleMaps': current_church_obj.google_maps_score,
         'socialClarity': 0,
-        'websiteAuthority': church_obj.domain_trust_score,
+        'websiteAuthority': current_church_obj.domain_trust_score,
         'vrVoice': 225,
         'vrMaps': 235,
         'vrSocial': 195,
         'vrWebsite':205,
         'last_month_searches': volume_search_last_month,
-        'loc_address': church_obj.address,
-        'loc_zipcode': church_obj.zipcode,
-        'loc_city': church_obj.city,
-        'loc_state': church_obj.state,
-        'website' : church_obj.webpage
+        'loc_address': current_church_obj.address,
+        'loc_zipcode': current_church_obj.zipcode,
+        'loc_city': current_church_obj.city,
+        'loc_state': current_church_obj.state,
+        'website' : current_church_obj.webpage
     }
     print(data)
     print("published data")
@@ -156,4 +153,4 @@ def test():
     return jsonify({"message" : "test"})
 
 if __name__ == '__main__':
-    app.run(debug=True, host="0.0.0.0", port = 8080)
+    app.run(debug=True, port = 8080)
