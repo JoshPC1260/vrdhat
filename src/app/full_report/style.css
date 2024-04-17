@@ -14,28 +14,24 @@ body{
 }
   
 .img-logo-main {
-    margin-top: 4rem;
-    margin-left: 4rem;
+    margin-top: 0rem;
+    margin-left: 0rem;
     max-width: 50%;
 }
 
 .title1{
-    margin-top: 7rem;
-    margin-left: 6rem;
+    margin-top: 0rem;
+    margin-left: 0rem;
     margin-bottom: 0;
     font-size: 3.75rem;
     font-style: normal;
     font-weight: bolder;
-    line-height: 120%; /* 3.75rem */
     letter-spacing: -0.15rem;
-    background: var(--Gradient-01, linear-gradient(178deg, #6ECAF8 0%, #0179FF 31.51%, #2246E2 100.03%));
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+
 }
 
 .title2-intro{
-    margin: 0 0 0 6rem;
+    margin: 0 0 0 0rem;
     width: 75rem; 
     flex-shrink: 0;
     color: #000;
@@ -47,7 +43,7 @@ body{
 }
 
 .address, .website{
-    margin-left: 6rem;
+    margin-left: 0rem;
 }
 
 .address{

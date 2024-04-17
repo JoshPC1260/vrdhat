@@ -21,6 +21,7 @@ https://developers.google.com/google-ads/api/docs/keyword-planning/generate-fore
 import argparse
 from datetime import datetime, timedelta
 import sys
+import os
 
 from google.ads.googleads.client import GoogleAdsClient
 from google.ads.googleads.errors import GoogleAdsException
@@ -101,20 +102,19 @@ def get_location_id(client, city, state):
 
 
 def start_historical(city, state):
+    
     # GoogleAdsClient will read the google-ads.yaml configuration file in the
     # home directory if none is specified.
     credentials = {
-    "developer_token": "d423LHHBTcqI-mV5c9vv5g",
-    "refresh_token": "1//05kyV4F6ssWWmCgYIARAAGAUSNwF-L9Ir14CP-2PojqNOYoYJp2ZU7ZnhoK2jXFC-5f7bJWcPzvAfwO7ih__VDvEdNPXIC4yGOQ0",
-    "client_id": "13639999617-n1tj9t5s907gv0st678emjugq886tn5t.apps.googleusercontent.com",
-    "client_secret": "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",
+    "developer_token": os.environ.get('DEVELOPER_TOKEN'),
+    "refresh_token": os.environ.get('REFRESH_TOKEN'),
+    "client_id": os.environ.get('CLIENT_ID'),
+    "client_secret": os.environ.get('CLIENT_SECRET'),
     "use_proto_plus" : True}
     googleads_client = GoogleAdsClient.load_from_dict(credentials)
 
-    
+    customer_id = os.environ.get('CUSTOMER_ID')
 
-   
-    customer_id = "7714456494"
-    return main(googleads_client, customer_id, city, state)
+    last_month_search_volume = main(googleads_client, customer_id, city, state).monthly_searches
 
-
+    return last_month_search_volume

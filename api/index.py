@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify, redirect, url_for, render_template
 from flask_mail import Mail, Message
 from flask_cors import CORS
+from flask_wtf.file import FileField, FileRequired
 from church import church
 import metricas
 import http.client
@@ -20,8 +21,11 @@ app.config['MAIL_USERNAME'] = "jrivero.jesus@gmail.com"
 app.config['MAIL_PASSWORD'] = "jrgr pagf uawe cohs"
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
+app.config['WTF_CSRF_ENABLED'] = False
+
 mail = Mail(app)
 
+global current_church_obj
 current_church_obj = church()
 
 def post_contact_hubspot(church_obj):
@@ -76,7 +80,7 @@ def send_email(church_obj):
             sender ='jrivero.jesus@gmail.com', 
             recipients = [church_obj.email] 
             ) 
-    #msg.html = render_template("email.html", first_name = church_obj.first_name)
+    msg.html = render_template("email.html", first_name = church_obj.first_name)
     mail.send(msg)
 
 @app.route('/submit-form', methods=['GET', 'POST'])
@@ -149,9 +153,25 @@ def fetch_data():
     print("published data")
     return jsonify(data)
 
+@app.route('/send-email', methods=['POST'])
+def receive_pdf():
+    print("Entered send email api")
+ 
+    # Access the form data
+    form_data = request.form
+ 
+    # Access the uploaded file
+    file = request.files['file']
+ 
+    # Save the file to disk
+    file.save('metadata.pdf')
+ 
+    print("PDF generated")
+    return 'Email sent successfully'
+
 @app.route("/test")
 def test():
     return jsonify({"message" : "test"})
 
 if __name__ == '__main__':
-    app.run(debug=True, host="0.0.0.0", port = 8080)
+    app.run(debug=True, host='0.0.0.0', port = 8080)

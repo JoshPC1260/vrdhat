@@ -9,8 +9,8 @@ import { useRef, useState } from 'react';
 export default function Home() {
   const ref = useRef();
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-20 overscroll-none ">
-      <div className = "img-logo">
+    <main className="flex flex-col items-center justify-between p-20" style={{overflow: "hidden", height: "100vh", width: "100vw"}}>
+      <div className = "img-logo" style={{overflow: "hidden"}}>
           <Image
           src={"Logo.svg"}
           alt="VR Logo"
@@ -19,7 +19,7 @@ export default function Home() {
           />
       </div>
       <div className="">
-        <div style={{position: "absolute", right: "-300px", bottom:"-450px"}}>
+        <div style={{position: "absolute", right: "-300px", bottom:"-450px", overflow: "hidden"}}>
           <Image
                   className=""
                   src="Radial waves.svg"
@@ -28,7 +28,7 @@ export default function Home() {
                   height={1200}
                 />
         </div>
-        <div style={{position: "absolute", right: "0px", bottom:"0px"}}>   
+        <div style={{position: "absolute", right: "0px", bottom:"0px", overflow: "hidden"}}>   
               <Image
                   className=""
                   src="page1_church.svg"
@@ -38,7 +38,7 @@ export default function Home() {
                 />
          </div>     
       </div>  
-      <div className="pt-40">  
+      <div className="pt-40" style={{overflow: "hidden"}}>  
         <h1 className="m-0 md:text-7xl sm:text-6xl text-black	 text-left title-text">Discover your Church’s</h1> 
         <h1 className="mt-5 md:text-7xl sm:text-6xl text-blue-600	 text-left title-text">Digital Health Score</h1>
 
