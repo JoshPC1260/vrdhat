@@ -1,7 +1,6 @@
 from flask import Flask, request, jsonify, redirect, url_for, render_template
 from flask_mail import Mail, Message
 from flask_cors import CORS
-from flask_wtf.file import FileField, FileRequired
 from church import church
 import metricas
 import http.client
@@ -153,21 +152,6 @@ def fetch_data():
     print("published data")
     return jsonify(data)
 
-@app.route('/send-email', methods=['POST'])
-def receive_pdf():
-    print("Entered send email api")
- 
-    # Access the form data
-    form_data = request.form
- 
-    # Access the uploaded file
-    file = request.files['file']
- 
-    # Save the file to disk
-    file.save('metadata.pdf')
- 
-    print("PDF generated")
-    return 'Email sent successfully'
 
 @app.route("/test")
 def test():

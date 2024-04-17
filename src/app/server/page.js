@@ -27,26 +27,7 @@ export default async function handler(req, res) {
     console.log("Generated PDF");
     fs.writeFileSync("report.pdf", pdf)
     console.log("saved pdf")
-    // Convert the PDF to a Blob
-    const buffer = Buffer.from(pdf, 'binary');
-    const blob = new Blob([buffer], { type: 'application/pdf' });
- 
-    // Send the PDF to the Flask backend
-    const formData = new FormData();
-    const boundary = '----WebKitFormBoundaryRandomString'; // Set a custom boundary string
-    formData.append('file', blob, 'report.pdf');
- 
-    const response = await fetch('http://54.221.79.123:8080/send-email', {
-      method: 'POST',
-      body: formData,
-      headers: {
-        'Content-Type': `multipart/form-data; boundary=${boundary}`
-      }
-    });
- 
-    console.log(formData);
-    const data = await response.json();
-    console.log(response);
+    
  
     // Close the browser instance
     await browser.close();
