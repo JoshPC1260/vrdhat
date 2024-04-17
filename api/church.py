@@ -649,6 +649,7 @@ class church:
             "api_key": SERPAPI_API_KEY,
             "hl" : "en"
         }
+        print(params)
 
         search = GoogleSearch(params)
         results = search.get_dict()
