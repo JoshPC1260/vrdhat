@@ -5,6 +5,7 @@ import Image from "next/image";
 import NavBar from "./components/navbar.js"
 import Circularbar from "../../app/components/Circularbar1.js";
 import Link from 'next/link.js';
+import Summary from "../../app/components/ScoreSummarySimple.js"
 
 export default function FullReport() {
    
@@ -60,7 +61,7 @@ export default function FullReport() {
 
     return (
         <div className="">
-            <div id="cr_page1" className="relative w-full h-[100vh] bg-white border-2 boder-red-600">
+            <div id="cr_page1" className="relative w-full h-[100vh] bg-white">
                 <div className="">
                     <div className="absolute left-[71px] top-[93px]">
                         <Image
@@ -183,14 +184,14 @@ export default function FullReport() {
             </div>
 
             <div id="cr_page4" className="relative w-full h-[100vh] grid grid-cols-9 grid-rows-2 justify-center bg-white" >
-                <div className="absolute left-[40px] top-[77px] w-[200px] border-2 border-red-500">
+                <div className="absolute left-[40px] top-[77px] w-[200px] ">
                     <Image
                         src={"/full_report_logo.svg"}
                         height={400}
                         width={400}
                     />
                 </div>
-                <div className="relative col-span-2 row-span-2 border-2 border-red-500">
+                <div className="relative col-span-2 row-span-2 ">
                     <div style={{zoom: 0.9}}>
                         <NavBar></NavBar>
                     </div>
@@ -198,29 +199,29 @@ export default function FullReport() {
                     
                 </div>
                 <div className="relative col-span-2">
-                    <div className="w-full h-full bg-[url('/Bounds.png')] bg-cover rounded-3xl shadow-2xl">
-                        <h1 className='relative top-48 text-white w-2/3 ml-10 text-[28px] font-medium'>
+                    <div className="w-full h-full bg-[url('/Bounds.png')] bg-cover">
+                        <h1 className='relative top-48 text-white w-2/3 ml-10 text-[26px] font-medium'>
                             People in the U.S. search for “churches near me” over <a className='text-[#0179FF]'>1 million </a>times each month
                         </h1>
                     </div>
                 </div>
                 <div className="relative  col-span-2 ">
                     <div className="w-full h-full bg-[url('/sample_map.png')] bg-cover rounded-3xl shadow-2xl">
-                        <h1 className='relative top-14 text-[#050938] w-2/3 ml-10 text-[28px] font-medium'>
+                        <h1 className='relative top-14 text-[#050938] w-2/3 ml-10 text-[26px] font-medium'>
                             Nearly <a className='text-[#0179FF]'>2 billion </a>people use Google Maps every month
                         </h1>
                     </div>
                 </div>
-                <div className="relative col-span-2 h-5/6 w-11/12 border-2 border-white rounded-3xl shadow-2xl">
+                <div className="relative col-span-2 h-full w-11/12  rounded-3xl shadow-2xl">
                     <div className='flex'>
-                        <div className="relative top-10 left-5 w-[50px]">
+                        <div className="relative top-10 left-5 w-[40px]">
                             <Image
                                 src={"/google_maps.svg"}
                                 height={400}
                                 width={400}
                             />
                         </div>
-                        <h1 className='relative top-8 left-12 text-[27px] font-medium text-[#050938] w-4/6'>
+                        <h1 className='relative top-8 left-12 text-[20px] font-medium text-[#050938] w-4/6'>
                             Your Google Maps Search Score
                         </h1>
                     </div>
@@ -228,10 +229,9 @@ export default function FullReport() {
                         <Circularbar value={googleMaps} title={undefined} max_value={250}/>
                     </div>
                 </div>
-                <div className="relative  border-2">
-                    5
+                <div className="relative ">
                 </div>
-                <div className="relative col-span-4 justify-center justify-items-center">
+                <div className="relative col-span-4 justify-center justify-items-center shadow-2xl rounded-3xl">
                     <div className="relative top-5 w-[180px] m-auto">
                         <Image
                             src={"/pin_map.svg"}
@@ -246,16 +246,16 @@ export default function FullReport() {
                         From where we eat to where we visit, digital maps are more important in our lives than ever before. The Digital Maps Score reflects how likely your church is to show up on these digital navigation apps when someone searches for “churches near me,” If your church information isn’t listed correctly, they won’t find you.
                     </h2>
                 </div>
-                <div className="relative col-span-2 h-5/6 w-11/12 border-2 border-white rounded-3xl shadow-2xl">
+                <div className="relative col-span-2 h-full w-11/12  rounded-3xl shadow-2xl">
                     <div className='flex'>
-                        <div className="relative top-10 left-5 w-[50px]">
+                        <div className="relative top-10 left-5 w-[40px]">
                             <Image
                                 src={"/google_maps.svg"}
                                 height={400}
                                 width={400}
                             />
                         </div>
-                        <h1 className='relative top-8 left-12 text-[27px] font-medium text-[#050938] w-4/6'>
+                        <h1 className='relative top-8 left-12 text-[20px] font-medium text-[#050938] w-3/6'>
                             Your Apple Maps Search Score
                         </h1>
                     </div>
@@ -267,15 +267,15 @@ export default function FullReport() {
 
             </div>
 
-            <div id="cr_page5" className="relative w-full h-[100vh] grid grid-cols-9 grid-rows-2 justify-center bg-white" >
-                <div className="absolute left-[40px] top-[77px] w-[200px] border-2 border-red-500">
+            <div id="cr_page6" className="relative w-full h-[100vh] grid grid-cols-9 grid-rows-2 justify-center bg-white" >
+                <div className="absolute left-[40px] top-[77px] w-[200px] ">
                     <Image
                         src={"/full_report_logo.svg"}
                         height={400}
                         width={400}
                     />
                 </div>
-                <div className="relative col-span-2 row-span-2 border-2 border-red-500">
+                <div className="relative col-span-2 row-span-2 ">
                     <div style={{zoom: 0.9}}>
                         <NavBar></NavBar>
                     </div>
@@ -283,64 +283,230 @@ export default function FullReport() {
                     
                 </div>
 
-                <div className='col-span-4 border-2 border-red-500 rounded-3xl justify-center justify-items-center'>1
-                    <div className="absolute w-[200px] border-2 border-blue-500 m-auto">
+                <div className='col-span-4  rounded-3xl justify-center justify-items-center shadow-2xl'>
+                    <div className="relative top-10 w-[120px]  m-auto">
                         <Image
                             src={"/authority_im.svg"}
                             height={400}
                             width={400}
                         />
                     </div>
+                    <h1 className='relative top-20 text-[#050938] w-2/3 left-0 text-[26px] font-medium text-center m-auto'>
+                        Why your <a className='text-[#0179FF]'>Website Authority Score </a>is Important
+                    </h1>
+                    <h2 className='relative top-24 text-[#75778B] w-5/6 left-0 text-[18px] font-medium text-center m-auto'>
+                        The #1 organic result is 10x more likely to receive a click compared to #10 spot. This makes having a well-ranking website extremely important. A strong online presence leads to more people finding your church, identifying with your mission and culture, and visiting your church.
+                    </h2>
+                    <h3 className='text-[#0179FF] text-[15px] font-regular relative top-28 left-80'> Source: backlinko </h3>
+
 
                 </div>
 
-                <div className='col-span-2 border-2 border-red-500 rounded-3xl'>2
-
+                <div className='col-span-2  rounded-3xl shadow-2xl'>
+                    <h1 className='relative top-12 text-[22px] font-medium text-[#050938] w-4/6 m-auto text-center'>
+                        Your Church Website Authority Score
+                    </h1>
+                    <div className='relative m-auto grid justify-center top-12'>
+                        <Circularbar value={websiteAuthority} title={undefined} max_value={250}/>
+                    </div>
                 </div>
-                <div className='border-2 border-red-500 rounded-3xl'>3
-
-                </div>
-
-                <div className='col-span-2 border-2 border-red-500 rounded-3xl'>4
-
-                </div>
-                <div className='col-span-4 border-2 border-red-500 rounded-3xl'>5
+                <div className=''>
 
                 </div>
 
-                <div className='border-2 border-red-500 rounded-3xl'>6
-
+                <div className="col-span-2 bg-[url('/computer_im.png')] bg-cover w-full h-full  shadow-2xl">
+                    <div className="relative w-full h-[100vh] bg-gradient-to-br from-[#11133F] from-10% to-white/30 rounded-3xl ">
+                        <h1 className='relative top-36 text-white w-2/3 ml-10 text-[26px] font-medium'>
+                            9 out of 10 people will visit your church website before ever visiting in-person
+                        </h1>
+                    </div>
                 </div>
-                <div className='border-2 border-red-500 rounded-3xl'>7
+                <div className='col-span-4 w-full h-full  shadow-2xl rounded-3xl'>
+                    <div className="relative -right-72 top-5 w-[200px] m-auto">
+                        <Image
+                            src={"/keywords_im.svg"}
+                            height={400}
+                            width={400}
+                        />
+                    </div>
+                    <h1 className='text-[#050938] text-[28px] font-medium w-2/3 relative left-12 -top-16'>Your Church’s Domain Keywords in Organic Search</h1>
+                    <h2 className='text-[#75778B] text-[18px] font-regular w-3/4 relative left-12 -top-10' >The top 8 keywords or phrases your website is known for by Google and other search engines</h2>
 
-                </div>
-
-                <div className='border-2 border-red-500 rounded-3xl'>8
-
-                </div>
-                <div className='border-2 border-red-500 rounded-3xl'>9
-
-                </div>
-
-                <div className='border-2 border-red-500 rounded-3xl'>10
-
-                </div>
-                <div className='border-2 border-red-500 rounded-3xl'>
-
-                </div>
-
-                <div className='border-2 border-red-500 rounded-3xl'>
-
-                </div>
-                <div className='border-2 border-red-500 rounded-3xl'>
-
+                    
                 </div>
 
-                <div className='border-2 border-red-500 rounded-3xl'>
+                <div className=''>
 
                 </div>
-
+                
             </div>
+
+            <div id="cr_page7" className='relative w-full h-[100vh] grid grid-cols-9 grid-rows-2 justify-center bg-white'>
+                <div className="absolute left-[40px] top-[77px] w-[200px] ">
+                    <Image
+                        src={"/full_report_logo.svg"}
+                        height={400}
+                        width={400}
+                    />
+                </div>
+                <div className="relative col-span-2 row-span-2 ">   
+                    <div style={{zoom: 0.9}}>
+                        <NavBar></NavBar>
+                    </div>
+                    
+                </div>
+                
+                    
+                <div className='col-span-4' style={{zoom : "0.9"}}>
+                    <Summary 
+                        digitalVoiceScore={digitalVoice} 
+                        avgDigitalVoiceScore={vrVoice} 
+                        digitalMapsScore={digitalMaps} 
+                        avgDigitalMapsScore={vrMaps}
+                        socialClarityScore={socialClarity} 
+                        avgSocialClarityScore={vrSocial} 
+                        websiteAuthorityScore={websiteAuthority}  
+                        avgWebsiteAuthorityScore={vrWebsite}
+                    />
+                </div>
+                
+                <div className='col-span-2 row-span-2 rounded-3xl shadow-2xl justify-center justify-items-center m-auto'>
+                    <h1 className='text-[24px] text-[#050938] relative top-16 left-0 font-medium text-center'>Your Church’s Total Digital Health Score</h1>
+                    <div className='relative m-auto grid justify-center top-20'>
+                        <Circularbar value={digitalVoice + digitalMaps + socialClarity + websiteAuthority} title={undefined} max_value={250}/>
+                    </div>
+                    <h2 className='text-[#75778B] text-[16px] font-regular relative top-20 w-5/6 m-auto text-center'>If you’re surprised by your digital health score, you are not alone. Most churches are in the same boat.</h2>
+                    <div className="relative top-24 w-[200px] m-auto">
+                        <Image
+                            src={"/people_im.svg"}
+                            height={400}
+                            width={400}
+                        />
+                    </div>
+                    <h1 className='text-[#050938] text-[22px] relative top-28 w-5/6 m-auto text-center'> 79% of churches </h1>
+                    <h2 className='text-[#75778B] text-[16px] font-regular relative top-36 w-5/6 m-auto  pb-56 text-center'>feel they don’t “have a well-defined digital ministry” for engaging nonbelievers or people outside their church community.</h2>
+                </div>
+                <div className=''>
+
+                </div>
+                <div className="col-span-4 bg-[url('/summary_im.webp')] bg-cover rounded-3xl shadow-2xl">
+                    <div className="relative w-full h-[100vh] bg-gradient-to-br from-[#050938] from-10% to-white/10 rounded-3xl">
+                        <h1 className='text-white text-[24px] font-regular relative top-20 -left-5 w-2/3 m-auto'>
+                            What can your church do to improve your digital outreach strategy to engage those who are lost, hurting, and seeking the truth of the gospel message?
+                        </h1>
+                    </div>
+                </div>
+            </div>
+
+            <div id="cr_page8" className='relative w-full h-[100vh] grid grid-cols-9 grid-rows-9 justify-center bg-white'>
+                <div className="absolute left-[40px] top-[77px] w-[200px] ">
+                    <Image
+                        src={"/full_report_logo.svg"}
+                        height={400}
+                        width={400}
+                    />
+                </div>
+                <div className="relative col-span-2 row-span-9 ">   
+                    <div style={{zoom: 0.9}}>
+                        <NavBar></NavBar>
+                    </div>
+                    
+                </div>
+                <div className='col-span-7 row-span-3 contain-strict'>
+                    <h1 className='text-[#0179FF] text-[45px] font-medium relative left-14 top-10'>VisitorReach™<a className='text-[#050938]'>—Your Digital Outreach Platform</a></h1>
+                    <h2 className='text-[18px] font-regular text-[#050938] relative m-auto top-20 text-center w-11/12'>
+                        VisitorReach is much more than just a website optimization platform or advertising agency. It’s a digital outreach program empowering pastors to have continual and consistent 1:1 SMS <a className='text-[#0179FF]'>conversations with seekers and new people to your city</a>. Churches that partner with VisitorReach average 40–160 new conversations every month and see new visitors walking through their doors every week.
+                    </h2>
+                </div>
+                <div className='col-span-7 row-span-2'>
+                    <div className='flex justify-center justify-items-center gap-20'>
+                        <div className="w-[500px] shadow-2xl rounded-2xl">
+                            <Image
+                                src={"/culture.svg"}
+                                height={800}
+                                width={800}
+                            />
+                        </div>
+                        <div className="w-[500px] shadow-2xl rounded-2xl">
+                            <Image
+                                src={"/house.svg"}
+                                height={800}    
+                                width={800}
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div className='col-span-7 row-span-4 relative left-14 top-10'>
+                    <h1 className='text-[#0179FF] text-[45px] font-medium '>
+                        The VisitorReach Process - 
+                    </h1>
+                    <h1 className='text-[45px] font-medium text-[#050938]'>Created for Pastors, by Pastors</h1>
+                    <div className="w-[1200px] relative -top-80 -left-24">
+                            <Image
+                                src={"/footer.svg"}
+                                height={2000}    
+                                width={2000}
+                            />
+                        </div>
+                </div>
+                
+            </div>
+
+            <div id="cr_outro" className='relative w-full h-[100vh] grid grid-cols-9 grid-rows-9 justify-center bg-white'>
+                <div className="absolute left-[40px] top-[77px] w-[200px] ">
+                    <Image
+                        src={"/full_report_logo.svg"}
+                        height={400}
+                        width={400}
+                    />
+                </div>
+                <div className="relative col-span-2 row-span-9 ">   
+                    <div style={{zoom: 0.9}}>
+                        <NavBar></NavBar>
+                    </div>
+                    
+                </div>
+                <div className='col-span-7 row-span-3 contain-strict'>
+                    <h1 className='text-[#0179FF] text-[45px] font-medium relative left-14 top-10'>VisitorReach™<a className='text-[#050938]'>—Your Digital Outreach Platform</a></h1>
+                    <h2 className='text-[18px] font-regular text-[#050938] relative m-auto top-20 text-center w-11/12'>
+                        VisitorReach is much more than just a website optimization platform or advertising agency. It’s a digital outreach program empowering pastors to have continual and consistent 1:1 SMS <a className='text-[#0179FF]'>conversations with seekers and new people to your city</a>. Churches that partner with VisitorReach average 40–160 new conversations every month and see new visitors walking through their doors every week.
+                    </h2>
+                </div>
+                <div className='col-span-7 row-span-2'>
+                    <div className='flex justify-center justify-items-center gap-20'>
+                        <div className="w-[500px] shadow-2xl rounded-2xl">
+                            <Image
+                                src={"/culture.svg"}
+                                height={800}
+                                width={800}
+                            />
+                        </div>
+                        <div className="w-[500px] shadow-2xl rounded-2xl">
+                            <Image
+                                src={"/house.svg"}
+                                height={800}    
+                                width={800}
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div className='col-span-7 row-span-4 relative left-14 top-10'>
+                    <h1 className='text-[#0179FF] text-[45px] font-medium '>
+                        The VisitorReach Process - 
+                    </h1>
+                    <h1 className='text-[45px] font-medium text-[#050938]'>Created for Pastors, by Pastors</h1>
+                    <div className="w-[1200px] relative -top-80 -left-24">
+                            <Image
+                                src={"/footer.svg"}
+                                height={2000}    
+                                width={2000}
+                            />
+                        </div>
+                </div>
+                
+            </div>
+
+
           
            
         </div>

@@ -9,8 +9,8 @@ import { useRef, useState } from 'react';
 export default function Home() {
   const ref = useRef();
   return (
-    <main className="flex flex-col items-center justify-between p-20" style={{overflow: "hidden", height: "100vh", width: "100vw"}}>
-      <div className = "img-logo" style={{overflow: "hidden"}}>
+    <div className="h-[100vh]" >
+      <div className = "relative left-[-700px] top-16 w-[320px]">
           <Image
           src={"Logo.svg"}
           alt="VR Logo"
@@ -38,19 +38,16 @@ export default function Home() {
                 />
          </div>     
       </div>  
-      <div className="pt-40" style={{overflow: "hidden"}}>  
-        <h1 className="m-0 md:text-7xl sm:text-6xl text-black	 text-left title-text">Discover your Church’s</h1> 
-        <h1 className="mt-5 md:text-7xl sm:text-6xl text-blue-600	 text-left title-text">Digital Health Score</h1>
+      <div className="">  
+        <h1 className="md:text-7xl sm:text-6xl text-black	 text-left font-medium absolute top-48 left-20">Discover your Church’s</h1> 
+        <h1 className="md:text-7xl sm:text-6xl text-[#0179FF]	 text-left font-medium absolute top-72  left-20 ">Digital Health Score</h1>
+      </div>
+      <div className="relative top-[400px] left-[90px] w-1/3">
+              <p className="  text-black text-[22px]">Can people in your community find your church? This tool was designed to help churches check their overall digital health and discoverability. Complete the form with your church’s information and receive a free Digital Health Assessment in your email.</p>    
 
-        <div className="flex flex-wrap justify-left content-left container mx-auto px-2">
-          <div className="flex flex-wrap justify-left content-left">
-
-            <div className="grid justify-left sm:px-3 w-full md:w-3/6">
-              <p className="sm:text-xl lg:text-2xl md:text-xl md:text-left text-left sm:text-center xs:text-center mt-20  text-black">Can people in your community find your church? This tool was designed to help churches check their overall digital health and discoverability. Complete the form with your church’s information and receive a free Digital Health Assessment in your email.</p>    
-
-              <div>
+              <div className="relative top-24">
                 <Link href="/form">
-                  <button className="text-2xl font-medium text-white rounded-full hover:bg-white bg-gradient-to-br from-vr-button-first via-vr-button-second to-vr-button-third hover:text-vr-button-third mt-40 h-16 w-48">
+                  <button className="text-2xl font-medium text-white rounded-full hover:bg-white bg-gradient-to-br from-vr-button-first via-vr-button-second to-vr-button-third hover:text-vr-button-third  h-16 w-48">
                     
                       Get Started
                     
@@ -61,12 +58,7 @@ export default function Home() {
               
               
             </div>
-            
-            
-            </div>
-        </div>
-      </div>
-    </main>
+    </div>
   );
 }
 
