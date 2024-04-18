@@ -1,4 +1,3 @@
-
 "use client";
 import React, { useState, useEffect } from 'react';
 import { Player, Controls } from '@lottiefiles/react-lottie-player';
