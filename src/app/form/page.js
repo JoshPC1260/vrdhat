@@ -33,7 +33,7 @@ export default function Page() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://54.221.79.123:8080/api/fetch-data')
+        const response = await fetch('http://3.86.166.124:8080/api/fetch-data')
         const data = await response.json()
  
         set_church_name(data.church_name)
@@ -97,7 +97,7 @@ export default function Page() {
       console.log("submitted form")
       const formData = new FormData(event.currentTarget)
  
-       const response = await fetch('http://54.221.79.123:8080/submit-form', {
+       const response = await fetch('http://3.86.166.124:8080/submit-form', {
         method: 'POST',
         body: formData,
       })

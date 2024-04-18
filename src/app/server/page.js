@@ -54,35 +54,35 @@ export default async function handler(req, res) {
   }
     const page = await browser.newPage();
     // Render the /full_report page server-side
-    await page.goto("http://localhost:3000//complete_report#cr_page1", { waitUntil: 'networkidle0' });
+    await page.goto("http://3.86.166.124:3000//complete_report#cr_page1", { waitUntil: 'networkidle0' });
     await page.screenshot({
       path:"reports/" + church_name + "/  " + 'cr_page1.jpg',
     });
-    await page.goto("http://localhost:3000//complete_report#cr_page2", { waitUntil: 'networkidle0' });
+    await page.goto("http://3.86.166.124:3000//complete_report#cr_page2", { waitUntil: 'networkidle0' });
     await page.screenshot({
       path:"reports/" + church_name + "/  " + 'cr_page2.jpg',
     });
-    await page.goto("http://localhost:3000//complete_report#cr_page3", { waitUntil: 'networkidle0' });
+    await page.goto("http://3.86.166.124:3000//complete_report#cr_page3", { waitUntil: 'networkidle0' });
     await page.screenshot({
       path:"reports/" + church_name + "/  " + 'cr_page3.jpg',
     });
-    await page.goto("http://localhost:3000//complete_report#cr_page4", { waitUntil: 'networkidle0' });
+    await page.goto("http://3.86.166.124:3000//complete_report#cr_page4", { waitUntil: 'networkidle0' });
     await page.screenshot({
       path:"reports/" + church_name + "/  " + 'cr_page4.jpg',
     });
-    await page.goto("http://localhost:3000//complete_report#cr_page6", { waitUntil: 'networkidle0' });
+    await page.goto("http://3.86.166.124:3000//complete_report#cr_page6", { waitUntil: 'networkidle0' });
     await page.screenshot({
       path:"reports/" + church_name + "/  " + 'cr_page6.jpg',
     });
-    await page.goto("http://localhost:3000//complete_report#cr_page7", { waitUntil: 'networkidle0' });
+    await page.goto("http://3.86.166.124:3000//complete_report#cr_page7", { waitUntil: 'networkidle0' });
     await page.screenshot({
       path:"reports/" + church_name + "/  " + 'cr_page7.jpg',
     });
-    await page.goto("http://localhost:3000//complete_report#cr_page8", { waitUntil: 'networkidle0' });
+    await page.goto("http://3.86.166.124:3000//complete_report#cr_page8", { waitUntil: 'networkidle0' });
     await page.screenshot({
       path:"reports/" + church_name + "/  " + 'cr_page8.jpg',
     });
-    await page.goto("http://localhost:3000//complete_report#cr_page9", { waitUntil: 'networkidle0' });
+    await page.goto("http://3.86.166.124:3000//complete_report#cr_page9", { waitUntil: 'networkidle0' });
     await page.screenshot({
       path:"reports/" + church_name + "/  " + 'cr_page9.jpg',
     });
