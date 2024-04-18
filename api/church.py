@@ -605,7 +605,7 @@ class church:
             "lon": self.coordinates[1],
             "api_key": SERPAPI_API_KEY
         }
-
+        print('Me cago en Flask', params)
         search = GoogleSearch(params)
         results = search.get_dict()
         local_results = results["local_results"]
