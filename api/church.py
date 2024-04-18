@@ -608,6 +608,7 @@ class church:
         print('Me cago en Flask', params)
         search = GoogleSearch(params)
         results = search.get_dict()
+        print('Me cago en Java', results)
         local_results = results["local_results"]
 
         if len(local_results) > 1:
