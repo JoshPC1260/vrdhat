@@ -22,6 +22,8 @@ async function mergeImagesToPDF(church_name, imageFiles) {
       height: pdfImage.height,
     });
   }
+
+  
  
   // Guarda el documento PDF en un archivo
   const pdfBytes = await pdfDoc.save();
