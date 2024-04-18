@@ -74,16 +74,16 @@ def post_contact_hubspot(church_obj):
 
 def send_email(church_obj):
 
-    msg = Message( 
-            "Check your Digital Health Assessment report for your church: " + church_obj.name, 
-            sender ='jrivero.jesus@gmail.com', 
-            recipients = [church_obj.email] 
-            ) 
-    with app.open_resource('report.pdf') as pdf_file:
-        msg.attach('report.pdf', 'application/pdf', pdf_file.read())
-
+    msg = Message(
+            "Check your Digital Health Assessment report for your church: " + church_obj.name,
+            sender ='jrivero.jesus@gmail.com',
+            recipients = [church_obj.email]
+            )
+    with app.open_resource("reports/" + "Test Report" + ".pdf") as pdf_file:
+        msg.attach("Test Report" + ".pdf", "application/pdf", pdf_file.read())
     msg.html = render_template("email.html", first_name = church_obj.first_name)
     mail.send(msg)
+
 
 @app.route('/submit-form', methods=['GET', 'POST'])
 def handle_form_submission():

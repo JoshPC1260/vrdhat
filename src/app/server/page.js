@@ -1,4 +1,4 @@
-import puppeteer from 'puppeteer';
+/* import puppeteer from 'puppeteer';
 import fs from 'fs';
 import fetch from 'node-fetch';
 import { PDFDocument } from 'pdf-lib';
@@ -108,4 +108,4 @@ export default async function handler(req, res) {
     console.error('Error generating PDF:', error);
     console.log('Error generating PDF');
   }
-}
+} */
