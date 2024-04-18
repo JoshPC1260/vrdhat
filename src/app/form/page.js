@@ -74,26 +74,13 @@ export default function Page() {
     
     return (
         <div className="pt loading flex-grow flex flex-col justify-center items-center">
-            <div className='flex flex-col items-center w-2/12' style={{width : "200px"}}>
-                <Image
-                src="message 1.svg"
-                alt="Picture of the author"
-                width={400}
-                height={400}
-                />
-                
-            </div>
-            <div className="mb-20  text-center  pt-40 w-5/6">
-                <p className='text-2xl text-vr-body-color font-medium'>
-                            Visitor Reach helps churches like yours make <a className='text-2xl text-vr-title-second font-medium block'>10 - 30 connections per week</a> with people looking for a church to attend.
-                </p>
-            </div>
+            
             <div className='relative'>
                 <Player
                     autoplay
                     loop
-                    src="https://lottie.host/e0da974d-e53a-490f-89fa-0e9f8f16c209/Je1BihubMQ.json"
-                    style={{ width: '400px', height: '200px' }}
+                    src="/Message Loading 1.json"
+                    style={{ width: '800px', height: '800px' }}
                 >
                 <Controls visible={false} buttons={['play', 'repeat', 'frame', 'debug']} />
                 </Player>
