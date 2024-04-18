@@ -30,15 +30,9 @@ async function mergeImagesToPDF(church_name, imageFiles) {
  
 
 export default async function handler(req, res) {
- 
+ const church_name = 'Test'
   try {
  
-    const { church_name } = req.body;
-    console.log(church_name);
- 
-    if (!church_name) {
-      return res.status(400).json({ message: 'Church name is required' });
-    }
     // Launch a new browser instance with puppeteer
     const browser = await puppeteer.launch({
       headless: true,
