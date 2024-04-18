@@ -47,13 +47,7 @@ export default async function handler(req, res) {
  
   const folderName = 'api/reports/' + church_name;
   try {
- 
-    const { church_name } = req.body; // Access church_name from request body
-    console.log(church_name);
- 
-    if (!church_name) {
-      return res.status(400).json({ message: 'Church name is required' });
-    }
+
  
     if (!fs.existsSync(folderName)) {
       fs.mkdirSync(folderName);
