@@ -8,7 +8,7 @@ export default async function handler(req, res) {
     const page = await browser.newPage();
  
     // Render the /full_report page server-side
-    await page.goto("http://54.221.79.123:8080/complete_report");
+    await page.goto("http://54.221.79.123:8080/full_report");
 
     const pdfOptions = {
       format: 'Legal', // Adjust format as needed
