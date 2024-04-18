@@ -7,7 +7,7 @@ import Circularbar from "../../app/components/Circularbar1.js";
 import Link from 'next/link.js';
 import Summary from "../../app/components/ScoreSummarySimple.js"
 
-export default function FullReport() {
+export default function CompleteReport() {
    
     const [isLoading, setIsLoading] = useState(true);
     const [church_name, set_church_name] = useState('');
@@ -31,7 +31,7 @@ export default function FullReport() {
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await fetch('<http://localhost:8080>/api/fetch-data');
+            const response = await fetch('http://localhost:8080/api/fetch-data');
             const data = await response.json();
       
             set_church_name(data.church_name);
@@ -66,6 +66,7 @@ export default function FullReport() {
                     <div className="absolute left-[71px] top-[93px]">
                         <Image
                             src={"/full_report_logo.svg"}
+                            alt={" "}
                             height={400}
                             width={400}
                         />
@@ -73,6 +74,7 @@ export default function FullReport() {
                     <div className="absolute right-[0px] top-[426px] w-1/2 bg-clip-content">
                         <Image
                             src={"/Omnichannel.png"}
+                            alt={" "}
                             height={700}
                             width={1000}
                         />
@@ -85,6 +87,7 @@ export default function FullReport() {
                             <div className="absolute left-[89px] top-[574px] w-[21.8px]">
                                 <Image
                                     src={"/location_icon.svg"}
+                                    alt={" "}
                                     height={400}
                                     width={400}
                                 />
@@ -94,6 +97,7 @@ export default function FullReport() {
                         <div className="absolute left-[89px] top-[635px] w-[23.8px] text-[#75778B] text-[30px] font-medium">
                             <Image
                                 src={"/website_icon.svg"}
+                                alt={" "}
                                 height={400}
                                 width={400}
                             />
@@ -112,6 +116,7 @@ export default function FullReport() {
                 <div className="absolute right-[100px] bottom-[70px] w-[239px]">
                     <Image
                         src={"/full_report_logo.svg"}
+                        alt={" "}
                         height={400}
                         width={400}
                     />
@@ -121,12 +126,13 @@ export default function FullReport() {
                 <div className="absolute left-[40px] top-[77px] w-[200px]">
                     <Image
                         src={"/full_report_logo.svg"}
+                        alt={" "}
                         height={400}
                         width={400}
                     />
                 </div>
                 <div className="relative col-span-2">
-                    <div style={{zoom: 0.9}}>
+                    <div style={{zoom: 0.8}}>
                         <NavBar></NavBar>
                     </div>
                     
@@ -137,6 +143,7 @@ export default function FullReport() {
                         <div className="relative m-auto w-[120px] top-10">
                             <Image
                                 src={"/homepod.svg"}
+                                alt={" "}
                                 height={400}
                                 width={400}
                             />
@@ -163,6 +170,7 @@ export default function FullReport() {
                         <div className="relative m-auto grid justify-center mt-0 w-[130px]">
                             <Image
                                 src={"/2p_church.svg"}
+                                alt={" "}
                                 height={400}
                                 width={400}
                             />
@@ -187,12 +195,13 @@ export default function FullReport() {
                 <div className="absolute left-[40px] top-[77px] w-[200px] ">
                     <Image
                         src={"/full_report_logo.svg"}
+                        alt={" "}
                         height={400}
                         width={400}
                     />
                 </div>
                 <div className="relative col-span-2 row-span-2 ">
-                    <div style={{zoom: 0.9}}>
+                    <div style={{zoom: 0.8}}>
                         <NavBar></NavBar>
                     </div>
                     
@@ -217,6 +226,7 @@ export default function FullReport() {
                         <div className="relative top-10 left-5 w-[40px]">
                             <Image
                                 src={"/google_maps.svg"}
+                                alt={" "}
                                 height={400}
                                 width={400}
                             />
@@ -235,6 +245,7 @@ export default function FullReport() {
                     <div className="relative top-5 w-[180px] m-auto">
                         <Image
                             src={"/pin_map.svg"}
+                            alt={" "}
                             height={400}
                             width={400}
                         />
@@ -251,6 +262,7 @@ export default function FullReport() {
                         <div className="relative top-10 left-5 w-[40px]">
                             <Image
                                 src={"/google_maps.svg"}
+                                alt={" "}
                                 height={400}
                                 width={400}
                             />
@@ -271,12 +283,13 @@ export default function FullReport() {
                 <div className="absolute left-[40px] top-[77px] w-[200px] ">
                     <Image
                         src={"/full_report_logo.svg"}
+                        alt={" "}
                         height={400}
                         width={400}
                     />
                 </div>
                 <div className="relative col-span-2 row-span-2 ">
-                    <div style={{zoom: 0.9}}>
+                    <div style={{zoom: 0.8}}>
                         <NavBar></NavBar>
                     </div>
                     
@@ -287,6 +300,7 @@ export default function FullReport() {
                     <div className="relative top-10 w-[120px]  m-auto">
                         <Image
                             src={"/authority_im.svg"}
+                            alt={" "}
                             height={400}
                             width={400}
                         />
@@ -325,6 +339,7 @@ export default function FullReport() {
                     <div className="relative -right-72 top-5 w-[200px] m-auto">
                         <Image
                             src={"/keywords_im.svg"}
+                            alt={" "}
                             height={400}
                             width={400}
                         />
@@ -345,12 +360,13 @@ export default function FullReport() {
                 <div className="absolute left-[40px] top-[77px] w-[200px] ">
                     <Image
                         src={"/full_report_logo.svg"}
+                        alt={" "}
                         height={400}
                         width={400}
                     />
                 </div>
                 <div className="relative col-span-2 row-span-2 ">   
-                    <div style={{zoom: 0.9}}>
+                    <div style={{zoom: 0.8}}>
                         <NavBar></NavBar>
                     </div>
                     
@@ -373,12 +389,13 @@ export default function FullReport() {
                 <div className='col-span-2 row-span-2 rounded-3xl shadow-2xl justify-center justify-items-center m-auto'>
                     <h1 className='text-[24px] text-[#050938] relative top-16 left-0 font-medium text-center'>Your Church’s Total Digital Health Score</h1>
                     <div className='relative m-auto grid justify-center top-20'>
-                        <Circularbar value={digitalVoice + digitalMaps + socialClarity + websiteAuthority} title={undefined} max_value={250}/>
+                        <Circularbar value={digitalVoice + digitalMaps + socialClarity + websiteAuthority} title={undefined} max_value={1000}/>
                     </div>
                     <h2 className='text-[#75778B] text-[16px] font-regular relative top-20 w-5/6 m-auto text-center'>If you’re surprised by your digital health score, you are not alone. Most churches are in the same boat.</h2>
                     <div className="relative top-24 w-[200px] m-auto">
                         <Image
                             src={"/people_im.svg"}
+                            alt={" "}
                             height={400}
                             width={400}
                         />
@@ -398,16 +415,17 @@ export default function FullReport() {
                 </div>
             </div>
 
-            <div id="cr_page8" className='relative w-full h-[100vh] grid grid-cols-9 grid-rows-9 justify-center bg-white'>
+            <div id="cr_page8" className='relative w-full h-[100vh] grid grid-cols-9 grid-rows-9 justify-center bg-white overflow-hidden'>
                 <div className="absolute left-[40px] top-[77px] w-[200px] ">
                     <Image
                         src={"/full_report_logo.svg"}
+                        alt={" "}
                         height={400}
                         width={400}
                     />
                 </div>
                 <div className="relative col-span-2 row-span-9 ">   
-                    <div style={{zoom: 0.9}}>
+                    <div style={{zoom: 0.8}}>
                         <NavBar></NavBar>
                     </div>
                     
@@ -423,6 +441,7 @@ export default function FullReport() {
                         <div className="w-[500px] shadow-2xl rounded-2xl">
                             <Image
                                 src={"/culture.svg"}
+                                alt={" "}
                                 height={800}
                                 width={800}
                             />
@@ -430,6 +449,7 @@ export default function FullReport() {
                         <div className="w-[500px] shadow-2xl rounded-2xl">
                             <Image
                                 src={"/house.svg"}
+                                alt={" "}
                                 height={800}    
                                 width={800}
                             />
@@ -444,6 +464,7 @@ export default function FullReport() {
                     <div className="w-[1200px] relative -top-80 -left-24">
                             <Image
                                 src={"/footer.svg"}
+                                alt={" "}
                                 height={2000}    
                                 width={2000}
                             />
@@ -452,61 +473,64 @@ export default function FullReport() {
                 
             </div>
 
-            <div id="cr_outro" className='relative w-full h-[100vh] grid grid-cols-9 grid-rows-9 justify-center bg-white'>
-                <div className="absolute left-[40px] top-[77px] w-[200px] ">
-                    <Image
-                        src={"/full_report_logo.svg"}
-                        height={400}
-                        width={400}
-                    />
-                </div>
-                <div className="relative col-span-2 row-span-9 ">   
-                    <div style={{zoom: 0.9}}>
-                        <NavBar></NavBar>
+            <div id="cr_page9" className='relative w-full h-[100vh] grid grid-cols-2 border-2 border-red-500 overflow-hidden'>
+
+                <div className='w-full h-full'>
+                    <div className="relative left-[116px] top-[74px] w-[300px]">
+                        <Image
+                            src={"/Logo.svg"}
+                            alt={" "}
+                            height={600}
+                            width={600}
+                        />
                     </div>
                     
+                    <div className='w-4/6 relative top-40 left-32'>
+                        <h1 className = "lg:text-[60px] md:text-[60px] sm:text-[30px] text-[#050938] font-medium relative block">Grow Your <a className = "text-[#0179FF]">Church</a> with VisitorReach</h1>
+
+                        <p className="2xl:text-[35px] xl:text-2xl md:text-[20px] sm:text-[20px] text-[#75778B] relative top-20">
+                                    
+                            To learn more about VisitorReach, 
+                            <span className="text-[#0179FF] "> 
+                                <Link href = "https://www.visitorreach.com/get-started">    
+                                    schedule<br />a quick 15 minute call
+                                </Link > 
+                                
+                            </span>  with our team today.
+                        </p>
+                    </div>
+                    <div className="relative 2xl:top-[300px] 2xl:left-32 w-[200px] xl:top-[30vh] xl:left-[20vw]">
+                        <Image
+                            src={"/QR.svg"}
+                            height={600}
+                            width={600}
+                        />
+                    </div>
+
                 </div>
-                <div className='col-span-7 row-span-3 contain-strict'>
-                    <h1 className='text-[#0179FF] text-[45px] font-medium relative left-14 top-10'>VisitorReach™<a className='text-[#050938]'>—Your Digital Outreach Platform</a></h1>
-                    <h2 className='text-[18px] font-regular text-[#050938] relative m-auto top-20 text-center w-11/12'>
-                        VisitorReach is much more than just a website optimization platform or advertising agency. It’s a digital outreach program empowering pastors to have continual and consistent 1:1 SMS <a className='text-[#0179FF]'>conversations with seekers and new people to your city</a>. Churches that partner with VisitorReach average 40–160 new conversations every month and see new visitors walking through their doors every week.
-                    </h2>
-                </div>
-                <div className='col-span-7 row-span-2'>
-                    <div className='flex justify-center justify-items-center gap-20'>
-                        <div className="w-[500px] shadow-2xl rounded-2xl">
-                            <Image
-                                src={"/culture.svg"}
-                                height={800}
-                                width={800}
-                            />
-                        </div>
-                        <div className="w-[500px] shadow-2xl rounded-2xl">
-                            <Image
-                                src={"/house.svg"}
-                                height={800}    
-                                width={800}
-                            />
-                        </div>
+                <div className='relative w-full h-full'>
+                    
+                    <div className="relative 2xl:left-[25vw] 2xl:-top-[0vh] 2xl:w-[40vw] 2xl:visible xl:visible md:hidden ">
+                        <Image
+                            src={"/guzman.svg"}
+                            alt={" "}
+                            height={600}
+                            width={600}
+                        />
+                    </div>
+                    <div className="relative 2xl:visible 2xl:-right-[0vw] 2xl:bottom-[0vh] 2xl:w-[20vw] xl:w-[30vw] xl:top-[40vh]  xl:right-[0vw]  md:w-[10vw]">
+                        <Image
+                            src={"/app_messages.svg"}
+                            alt={" "}
+                            height={600}
+                            width={600}
+                        />
                     </div>
                 </div>
-                <div className='col-span-7 row-span-4 relative left-14 top-10'>
-                    <h1 className='text-[#0179FF] text-[45px] font-medium '>
-                        The VisitorReach Process - 
-                    </h1>
-                    <h1 className='text-[45px] font-medium text-[#050938]'>Created for Pastors, by Pastors</h1>
-                    <div className="w-[1200px] relative -top-80 -left-24">
-                            <Image
-                                src={"/footer.svg"}
-                                height={2000}    
-                                width={2000}
-                            />
-                        </div>
-                </div>
+
                 
             </div>
-
-
+            
           
            
         </div>
