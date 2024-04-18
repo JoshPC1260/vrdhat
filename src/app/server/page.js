@@ -25,7 +25,7 @@ export default async function handler(req, res) {
     // Generate a PDF from the rendered HTML
     const pdf = await page.pdf(pdfOptions);
     console.log("Generated PDF");
-    fs.writeFileSync("report.pdf", pdf)
+    fs.writeFileSync("./api/report.pdf", pdf)
     console.log("saved pdf")
     
  
