@@ -28,11 +28,7 @@ async function mergeImagesToPDF(church_name, imageFiles) {
   fs.writeFileSync("reports/" + church_name +'.pdf', pdfBytes);
 }
  
-export const config = {
-  api: {
-    bodyParser: true,
-  },
-};
+
 export default async function handler(req, res) {
  
   try {
