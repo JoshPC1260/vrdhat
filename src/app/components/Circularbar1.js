@@ -17,7 +17,7 @@ export default function CircularProgressbar({ value, title, max_value }) {
     if (progress <= 0.2) {
       return '#E23D3E';
     } else if (progress <= 0.4) {
-      return 'EB7E5C';
+      return '#EB7E5C';
     } else if (progress <= 0.6) {
       return '#F7C780';
     } else if (progress <= 0.8) {

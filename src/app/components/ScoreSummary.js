@@ -114,11 +114,11 @@ const ScoreSummary = ({
               avgscore={avgDigitalMapsScore}
               label="Digital Maps Score"
             />
-            <ScoreBar
+            {/* <ScoreBar
               score={socialClarityScore}
               avgscore={avgSocialClarityScore}
               label="Social Clarity Score"
-            />
+            /> */}
             <ScoreBar
               score={websiteAuthorityScore}
               avgscore={avgWebsiteAuthorityScore}
