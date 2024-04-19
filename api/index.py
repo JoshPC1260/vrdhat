@@ -82,7 +82,7 @@ def send_email(church_obj):
             recipients = [church_obj.email]
             )
     pdf_gen.generate(church_obj.name)
-    with app.open_resource("reports/" + church_obj.name + ".pdf") as pdf_file:
+    with app.open_resource("reports/" + (church_obj.name).replace(" ","_") + ".pdf") as pdf_file:
         msg.attach(church_obj.name + ".pdf", "application/pdf", pdf_file.read())
     msg.html = render_template("email.html", first_name = church_obj.first_name)
     mail.send(msg)

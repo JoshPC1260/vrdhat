@@ -28,34 +28,35 @@ def generate(church_name):
         #options.add_argument("--force-device-scale-factor=1.5")
         driver = webdriver.Chrome(service=service, options=options)
         driver.maximize_window()
- 
-        folder_name = f"reports/{church_name}"
+    
+        folder_name = f"reports/{church_name.replace(" ", "_")}"
+
         if not os.path.exists(folder_name):
             os.makedirs(folder_name)
  
         # Render the /complete_report page server-side
-        driver.get("http://localhost:3000/complete_report#cr_page1")
+        driver.get("http://3.86.166.124:3000/complete_report#cr_page1")
         driver.save_screenshot(f"{folder_name}/cr_page1.png")
  
-        driver.get("http://localhost:3000/complete_report#cr_page2")
+        driver.get("http://3.86.166.124:3000/complete_report#cr_page2")
         driver.save_screenshot(f"{folder_name}/cr_page2.png")
  
-        driver.get("http://localhost:3000/complete_report#cr_page3")
+        driver.get("http://3.86.166.124:3000/complete_report#cr_page3")
         driver.save_screenshot(f"{folder_name}/cr_page3.png")
  
-        driver.get("http://localhost:3000/complete_report#cr_page4")
+        driver.get("http://3.86.166.124:3000/complete_report#cr_page4")
         driver.save_screenshot(f"{folder_name}/cr_page4.png")
  
-        driver.get("http://localhost:3000/complete_report#cr_page6")
+        driver.get("http://3.86.166.124:3000/complete_report#cr_page6")
         driver.save_screenshot(f"{folder_name}/cr_page6.png")
  
-        driver.get("http://localhost:3000/complete_report#cr_page7")
+        driver.get("http://3.86.166.124:3000/complete_report#cr_page7")
         driver.save_screenshot(f"{folder_name}/cr_page7.png")
  
-        driver.get("http://localhost:3000/complete_report#cr_page8")
+        driver.get("http://3.86.166.124:3000/complete_report#cr_page8")
         driver.save_screenshot(f"{folder_name}/cr_page8.png")
  
-        driver.get("http://localhost:3000/complete_report#cr_page9")
+        driver.get("http://3.86.166.124:3000/complete_report#cr_page9")
         driver.save_screenshot(f"{folder_name}/cr_page9.png")
  
         driver.quit()

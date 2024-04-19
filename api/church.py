@@ -605,10 +605,10 @@ class church:
             "lon": self.coordinates[1],
             "api_key": SERPAPI_API_KEY
         }
-        print('Me cago en Flask', params)
+        print('duckduckgo params', params)
         search = GoogleSearch(params)
         results = search.get_dict()
-        print('Me cago en Java', results)
+        print('duckduckgo results', results)
         local_results = results["local_results"]
 
         if len(local_results) > 1:
