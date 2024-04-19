@@ -28,8 +28,8 @@ def generate(church_name):
         #options.add_argument("--force-device-scale-factor=1.5")
         driver = webdriver.Chrome(service=service, options=options)
         driver.maximize_window()
-    
-        folder_name = f"reports/{church_name.replace(" ", "_")}"
+        church_name = church_name.replace(" ", "_")
+        folder_name = f"reports/{church_name}"
 
         if not os.path.exists(folder_name):
             os.makedirs(folder_name)
