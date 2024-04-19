@@ -1,19 +1,21 @@
 from flask import Flask, request, jsonify, redirect, url_for, render_template
 from flask_mail import Mail, Message
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 from church import church
 import metricas
 import http.client
 import json
 import os
-
+import requests
+import pdf_gen
+ 
 HUBSPOT_API_KEY = os.environ.get('HUBSPOT_API_KEY')
-
+ 
 app = Flask(__name__)
 mail = Mail(app)
 CORS(app)
 volume_search_last_month = 0
-
+ 
 app.config['MAIL_SERVER'] = "smtp.gmail.com"
 app.config['MAIL_PORT'] = 465
 app.config['MAIL_USERNAME'] = "jrivero.jesus@gmail.com"
@@ -21,14 +23,14 @@ app.config['MAIL_PASSWORD'] = "jrgr pagf uawe cohs"
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 app.config['WTF_CSRF_ENABLED'] = False
-
+ 
 mail = Mail(app)
-
+ 
 global current_church_obj
 current_church_obj = church()
-
+ 
 def post_contact_hubspot(church_obj):
-
+ 
     conn = http.client.HTTPSConnection("api.hubapi.com")
     payload = json.dumps({
     "properties": {
@@ -49,7 +51,7 @@ def post_contact_hubspot(church_obj):
     conn.request("POST", f"/crm/v3/objects/contacts?{HUBSPOT_API_KEY}", payload, headers)
     res = conn.getresponse()
     data = res.read()
-    
+   
     conn = http.client.HTTPSConnection("api.hubapi.com")
     payload = json.dumps({
     "properties": {
@@ -58,7 +60,7 @@ def post_contact_hubspot(church_obj):
         "phone" : church_obj.phone,
         "city" : church_obj.city,
         "country" : "United States",
-        
+       
     }
     })
     headers = {
@@ -73,29 +75,28 @@ def post_contact_hubspot(church_obj):
 
 
 def send_email(church_obj):
-
+ 
     msg = Message(
             "Check your Digital Health Assessment report for your church: " + church_obj.name,
             sender ='jrivero.jesus@gmail.com',
             recipients = [church_obj.email]
             )
-    with app.open_resource("reports/" + "Test Report" + ".pdf") as pdf_file:
-        msg.attach("Test Report" + ".pdf", "application/pdf", pdf_file.read())
+    pdf_gen.generate(church_obj.name)
+    with app.open_resource("reports/" + church_obj.name + ".pdf") as pdf_file:
+        msg.attach(church_obj.name + ".pdf", "application/pdf", pdf_file.read())
     msg.html = render_template("email.html", first_name = church_obj.first_name)
     mail.send(msg)
-
-
-@app.route('/submit-form', methods=['GET', 'POST'])
+ 
+ 
+@app.route('/submit-form', methods=['POST'])
+@cross_origin()
 def handle_form_submission():
         global current_church_obj
         church_obj = church()
-
-        form_data = request.form
-        print(f"Received form data: {form_data}")
-
-        church_obj.first_name = form_data.get("firstName") 
-        print("-------------------")
-        church_obj.last_name = form_data.get("lastName") 
+ 
+        form_data = request.get_json()
+        church_obj.first_name = form_data.get("firstName")
+        church_obj.last_name = form_data.get("lastName")
         church_obj.mobile_phone = form_data.get("mobilePhone")
         church_obj.email = form_data.get("email")
         church_obj.name = form_data.get("churchName")
@@ -108,27 +109,24 @@ def handle_form_submission():
         church_obj.phone = form_data.get("churchPhone")
         church_obj.facebook_profile = form_data.get("churchFacebook")
         church_obj.instagram_profile = form_data.get("churchInstagram")
-        print("**********************")
 
         global volume_search_last_month
         try:
             volume_search_last_month = metricas.start_historical(church_obj.city, church_obj.state)
         except:
             pass
-        print(".......................")
         church_obj.get_digital_search_assesment_score()
-        print(":::::::::::::::::::::::::")
         church_obj.get_map_image()
         post_contact_hubspot(church_obj)
         send_email(church_obj)
         current_church_obj = church_obj
 
         return jsonify({'message': 'Form submission received'}), 200  # Return 200 OK status code
-
-
-
-
-
+ 
+ 
+ 
+ 
+ 
 @app.route('/api/fetch-data', methods=['GET'])
 def fetch_data():
     global current_church_obj
@@ -154,11 +152,11 @@ def fetch_data():
     print(data)
     print("published data")
     return jsonify(data)
-
-
+ 
+ 
 @app.route("/test")
 def test():
     return jsonify({"message" : "test"})
-
+ 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port = 8080)
+    app.run(debug=True, port = 8080)

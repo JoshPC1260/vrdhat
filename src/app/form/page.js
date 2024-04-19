@@ -5,7 +5,7 @@ import 'next/router'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import { Player, Controls } from '@lottiefiles/react-lottie-player';
-
+ 
 export default function Page() {
   const church_sizes = ['0-99', '100-299', '300-499', '500-999', '1,000-1,999', '2,000-4,999', '5,000-9,999', '10,000+']
   const [isLoading, setIsLoading] = useState(false)
@@ -33,7 +33,7 @@ export default function Page() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://3.86.166.124:8080/api/fetch-data')
+        const response = await fetch('http://localhost:8080/api/fetch-data')
         const data = await response.json()
  
         set_church_name(data.church_name)
@@ -65,16 +65,16 @@ export default function Page() {
         setShowAnimation(true)
         router.push('/user_report')
     }, 8000)
-        
+       
       return () => clearTimeout(timeoutId)
     }
   }, [submitted])
  
   const LoadingAnimation = () => {
-    
+   
     return (
         <div className="pt loading flex-grow flex flex-col justify-center items-center">
-            
+           
             <div className='relative'>
                 <Player
                     autoplay
@@ -95,21 +95,53 @@ export default function Page() {
     try {
       setIsSubmitting(true)
       console.log("submitted form")
-      const formData = new FormData(event.currentTarget)
+     
+      /* const formData = new FormData(event.currentTarget)
  
-       const response = await fetch('http://3.86.166.124:8080/submit-form', {
+       const response = await fetch('http://localhost:8080/submit-form', {
         method: 'POST',
         body: formData,
       })
       console.log(formData)
-      const data = await response.json() 
+      const data = await response.json()
+      console.log(data) */
+      const myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+      myHeaders.append("Access-Control-Allow-Origin", "*")
+      const churchInfo = JSON.stringify({
+        "firstName": event.target.elements.firstName.value,
+        "lastName": event.target.elements.lastName.value,
+        "mobilePhone": event.target.elements.mobilePhone.value,
+        "email": event.target.elements.email.value,
+        "churchName": event.target.elements.churchName.value,
+        "churchWebsite": event.target.elements.churchWebsite.value,
+        "churchSize": event.target.elements.churchSize.value,
+        "churchPhone": event.target.elements.churchPhone.value,
+        "churchAddress": event.target.elements.churchAddress.value,
+        "churchState": event.target.elements.churchState.value,
+        "churchCity": event.target.elements.churchCity.value,
+        "churchZipCode": event.target.elements.churchZipCode.value,
+        "churchFacebook": event.target.elements.churchFacebook.value,
+        "churchInstagram": event.target.elements.churchInstagram.value
+      });
+ 
+      console.log(churchInfo)
+       const response = await fetch('http://localhost:8080/submit-form', {
+        method: 'POST',
+        body: churchInfo,
+        headers: myHeaders,
+      })
+     
+      const data = await response.json()
+ 
+ 
  
       setSubmitted(true)
     } catch (error) {
       console.error(error)
     } finally {
     //   setIsSubmitting(false)
-      
+     
     }
   }
  
@@ -118,9 +150,9 @@ export default function Page() {
         {isLoading ? (
             <div className="pt loading flex-grow flex flex-col justify-center items-center">
                 <div className='flex flex-col items-center w-2/12'>
-
+ 
                 </div>
-    
+   
             </div>
       ) : isSubmitting ? (
 <LoadingAnimation />
@@ -168,12 +200,12 @@ export default function Page() {
                     <div className='pt-10 w-10/12 m-auto'>
                         <label
                             className='phone:text-sm tablet-vertical:text-2xl text-slate-700'>By submitting this form, you agree to VisitorReach's{" "}  
-                            <Link href="https://www.visitorreach.com/terms-of-use" 
+                            <Link href="https://www.visitorreach.com/terms-of-use"
                                 className='phone:text-md tablet-vertical:text-2xl font-bold hover:text-blue-500 text-slate-700'>
                                     Terms of Use
                             </Link>
-                                , 
-                            <Link href="https://www.visitorreach.com/privacy-policy" 
+                                , 
+                            <Link href="https://www.visitorreach.com/privacy-policy"
                                 className='phone:text-md tablet-vertical:text-2xl font-bold hover:text-blue-500 text-slate-700'>
                                      Privacy Policy
                                     </Link>
@@ -186,16 +218,16 @@ export default function Page() {
                         <button className= "w-60 h-14 rounded-full text-white text-2xl bg-vr-title-second hover:bg-slate-100 hover:text-vr-title-second hover:shadow-sm" type="submit" >
                             Create Report
                         </button>
-
-                    
+ 
+                   
                 </div>
-                
+               
             </div>
-
-            
+ 
+           
         </div>
     </form>
-        
+       
       )}
     </div>
   );
