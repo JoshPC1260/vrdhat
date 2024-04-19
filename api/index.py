@@ -118,7 +118,7 @@ def handle_form_submission():
         church_obj.get_digital_search_assesment_score()
         church_obj.get_map_image()
         post_contact_hubspot(church_obj)
-        send_email(church_obj)
+        #send_email(church_obj)
         current_church_obj = church_obj
 
         return jsonify({'message': 'Form submission received'}), 200  # Return 200 OK status code
