@@ -624,9 +624,16 @@ class church:
                     self.apple_coordinates = (local_results[0]["gps_coordinates"]["latitude"], local_results[0]["gps_coordinates"]["longitude"])
                     try:
                         self.apple_address =  local_results[0].get("address", "").split(",")[0]
-                        self.apple_city = local_results[0].get("address", "").split(",")[1]          
+                        if states_dic.get(local_results[0].get("address", "").split(", ")[2].split(" ")[0], "") == "":
+                            self.apple_state = states_dic[local_results[0].get("address", "").split(", ")[3].split(" ")[0]]
+                            self.apple_city = local_results[0].get("address", "").split(",")[2]  
+                            self.apple_zipcode = local_results[0].get("address", "").split(",")[3].split(" ")[1]
+                        else:
+                            self.apple_state = states_dic[local_results[0].get("address", "").split(", ")[2].split(" ")[0]]   
+                            self.apple_city = local_results[0].get("address", "").split(",")[1]       
+                            self.apple_zipcode = local_results[0].get("address", "").split(",")[2].split(" ")[1]
                         self.apple_state = states_dic[self.find_all_letters(local_results[0].get("address", "").split(",")[2].split(" "))[0]]
-                        self.apple_zipcode = local_results[0].get("address", "").split(",")[2].split(" ")[1]
+                        
                     except IndexError:
                         pass
                     allowed_chars = string.digits
