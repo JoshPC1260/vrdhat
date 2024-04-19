@@ -33,7 +33,7 @@ export default function Page() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:8080/api/fetch-data')
+        const response = await fetch('http://3.86.166.124:8080/api/fetch-data')
         const data = await response.json()
  
         set_church_name(data.church_name)
@@ -126,7 +126,7 @@ export default function Page() {
       });
  
       console.log(churchInfo)
-       const response = await fetch('http://localhost:8080/submit-form', {
+       const response = await fetch('http://3.86.166.124:8080/submit-form', {
         method: 'POST',
         body: churchInfo,
         headers: myHeaders,
